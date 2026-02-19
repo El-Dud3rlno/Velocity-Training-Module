@@ -2675,5 +2675,107 @@
     "dependencies": [
       "create_suppression_profile"
     ]
+  },
+  {
+    "how_to_id": "configure_field_mappings",
+    "metadata": {
+      "module": "Contact Import",
+      "feature_area": "Field Mappings",
+      "difficulty": "beginner",
+      "estimated_time_minutes": 10,
+      "requires_permissions": [
+        "Admin",
+        "Data Importer"
+      ]
+    },
+    "business_objective": "Create or update a field mapping so CSV headers align to Velocity contact fields during file and SFTP imports.",
+    "preconditions": [
+      "User has permission to manage contact imports and mappings",
+      "A sample CSV file and expected header names are available"
+    ],
+    "navigation_path": "Home > Management > Field Mappings",
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "Navigate",
+        "ui_location": "Main navigation",
+        "field_name": "Management > Field Mappings",
+        "value_type": null,
+        "validation_expected": "Field Mappings page opens",
+        "common_errors": null
+      },
+      {
+        "step_number": 2,
+        "action": "Click",
+        "ui_location": "Field Mappings page",
+        "field_name": "Contact tab",
+        "value_type": null,
+        "validation_expected": "Contact mapping list is displayed",
+        "common_errors": null
+      },
+      {
+        "step_number": 3,
+        "action": "Click",
+        "ui_location": "Top-right of Contact Field Mappings",
+        "field_name": "+ Contact Mapping",
+        "value_type": null,
+        "validation_expected": "A new mapping form opens",
+        "common_errors": "If editing, click the pencil icon on an existing mapping instead"
+      },
+      {
+        "step_number": 4,
+        "action": "Enter",
+        "ui_location": "Contact Field Mappings form",
+        "field_name": "Name",
+        "value_type": "text",
+        "validation_expected": "Mapping name is populated and unique",
+        "common_errors": "Duplicate or blank mapping name"
+      },
+      {
+        "step_number": 5,
+        "action": "Map",
+        "ui_location": "Mappings grid",
+        "field_name": "File Header Field / Contact Field",
+        "value_type": "text+enum",
+        "validation_expected": "Each CSV header is paired to the correct contact field",
+        "common_errors": "Header typos or incorrect contact field selection"
+      },
+      {
+        "step_number": 6,
+        "action": "Click",
+        "ui_location": "Bottom of mappings grid",
+        "field_name": "+ Mapping",
+        "value_type": null,
+        "validation_expected": "Additional mapping row is added",
+        "common_errors": null
+      },
+      {
+        "step_number": 7,
+        "action": "Validate",
+        "ui_location": "Mappings grid",
+        "field_name": "Required fields",
+        "value_type": null,
+        "validation_expected": "All * required fields are mapped and at least one ** unique identifier (for example External ID**) is mapped",
+        "common_errors": "Missing required or unique identifier mapping"
+      },
+      {
+        "step_number": 8,
+        "action": "Click",
+        "ui_location": "Top-right of mapping form",
+        "field_name": "Save",
+        "value_type": null,
+        "validation_expected": "Mapping is saved and appears in Contact Field Mappings list",
+        "common_errors": "Validation errors for missing required mappings"
+      }
+    ],
+    "system_behavior_after_completion": "Velocity stores the mapping and makes it selectable in File Import and SFTP Import workflows.",
+    "verification_procedure": [
+      "Return to Management > Contact Import > File Import and confirm the mapping is available in the Field Mapping dropdown",
+      "Optionally perform a sample import to verify CSV values populate the expected contact fields"
+    ],
+    "rollback_procedure": "Open Field Mappings, edit the mapping to correct rows, or delete the mapping from the actions menu if it should no longer be used.",
+    "dependencies": [
+      "create_custom_field"
+    ]
   }
 ]
