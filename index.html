@@ -331,7 +331,7 @@
       - Content compiled from the embedded training library
     */
 
-    const HOWTOS = [
+    const EMBEDDED_HOWTOS = [
       {
         "how_to_id": "create_custom_field",
         "metadata": {
@@ -3085,8 +3085,19 @@
         }));
     }
 
-    const howtos = normalizeHowtos(HOWTOS);
+    let howtos = normalizeHowtos(EMBEDDED_HOWTOS);
 
+
+    async function loadHowtosFromJson(){
+      try{
+        const res = await fetch("./VelocityLLM Training Guide.json", { cache: "no-store" });
+        if(!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const normalized = normalizeHowtos(data);
+        if(normalized.length) return normalized;
+      }catch(_e){}
+      return normalizeHowtos(EMBEDDED_HOWTOS);
+    }
     function buildModules(){
       const byModule = new Map();
       for(const h of howtos){
@@ -3153,7 +3164,7 @@
       return modules;
     }
 
-    const modules = buildModules();
+    let modules = buildModules();
 
     function flattenLessons(){
       const out=[];
@@ -3165,7 +3176,7 @@
       return out;
     }
 
-    let lessons = flattenLessons();
+    let lessons = [];
 
     function getLessonIndexById(id){
       return lessons.findIndex(l=>l.id===id);
@@ -3690,7 +3701,10 @@
       placeTour(s.target);
     }
 
-    function init(){
+    async function init(){
+      howtos = await loadHowtosFromJson();
+      modules = buildModules();
+
       loadState();
       setTheme(state.theme || "dark");
 
