@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CustomerDynamics.com | Velocity Training</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f162d;
+      --panel2:#0b1329;
+      --text:#e7edf7;
+      --muted:#a8b3c8;
+      --border:rgba(255,255,255,.10);
+      --shadow:0 14px 30px rgba(0,0,0,.35);
+      --accent:#00a3c4;
+      --accent2:#2f6fed;
+      --good:#22c55e;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --chip:rgba(0,163,196,.12);
+      --focus:0 0 0 3px rgba(0,163,196,.22);
+      --radius:16px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
+
+    [data-theme="light"]{
+      --bg:#f6f7fb;
+      --panel:#ffffff;
+      --panel2:#f1f4fb;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.10);
+      --shadow:0 14px 30px rgba(15,23,42,.10);
+      --accent:#007ea8;
+      --accent2:#2f6fed;
+      --good:#16a34a;
+      --warn:#b45309;
+      --bad:#e11d48;
+      --chip:rgba(0,126,168,.10);
+      --focus:0 0 0 3px rgba(0,126,168,.18);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1000px 560px at 15% -10%, rgba(47,111,237,.16), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(0,163,196,.16), transparent 55%),
+        var(--bg);
+    }
+
+    .app{
+      display:grid;
+      grid-template-columns:340px 1fr;
+      gap:18px;
+      padding:18px;
+      height:100%;
+      max-width:1500px;
+      margin:0 auto;
+    }
+
+    @media (max-width:1020px){
+      .app{grid-template-columns:1fr;height:auto}
+      .sidebar{position:relative;top:0;height:auto}
+      .main{position:relative;top:0;height:auto}
+    }
+
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%), var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      min-width:0;
+    }
+
+    .sidebar{position:sticky;top:18px;height:calc(100vh - 36px);display:flex;flex-direction:column}
+
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:14px 14px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(0,163,196,.16), rgba(47,111,237,.12));
+    }
+
+    .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .brand .t{font-weight:950;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand .s{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:850;
+      font-size:13px;
+      user-select:none;
+    }
+    .pill:hover{background:rgba(255,255,255,.06)}
+    .pill:focus{outline:none;box-shadow:var(--focus)}
+
+    .meta{
+      padding:12px 14px;
+      display:grid;
+      gap:12px;
+      border-bottom:1px solid var(--border);
+      background:var(--panel2);
+    }
+
+    .progressWrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px}
+    .progress{height:10px;border-radius:999px;overflow:hidden;border:1px solid var(--border);background:rgba(255,255,255,.06)}
+    .progress > div{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s ease}
+    .pct{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:900;
+      user-select:none;
+    }
+    .btn:hover{background:rgba(255,255,255,.07)}
+    .btn:focus{outline:none;box-shadow:var(--focus)}
+    .btn.primary{border-color:rgba(0,163,196,.45);background:linear-gradient(90deg, rgba(0,163,196,.18), rgba(47,111,237,.16))}
+    .btn.small{padding:7px 10px;border-radius:10px;font-size:12px}
+
+    .search{display:grid;gap:8px}
+    .search input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      outline:none;
+    }
+    .search input:focus{box-shadow:var(--focus)}
+
+    .nav{padding:10px;overflow:auto}
+    .navGroup{margin:8px 0 14px}
+    .navGroup h4{margin:10px 8px 8px;font-size:12px;text-transform:uppercase;letter-spacing:.10em;color:var(--muted)}
+
+    .navItem{
+      display:grid;
+      grid-template-columns:18px 1fr auto;
+      gap:10px;
+      align-items:center;
+      padding:10px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      cursor:pointer;
+      user-select:none;
+      transition:background .12s ease, border-color .12s ease;
+    }
+    .navItem:hover{background:rgba(255,255,255,.05)}
+    .navItem.active{border-color:rgba(0,163,196,.40);background:rgba(0,163,196,.10)}
+
+    .dot{width:10px;height:10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
+    .dot.done{background:var(--good);border-color:transparent}
+
+    .badge{font-size:12px;padding:3px 8px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--muted)}
+
+    .main{position:sticky;top:18px;height:calc(100vh - 36px);display:grid;grid-template-rows:auto 1fr auto}
+
+    .mainHeader{
+      padding:16px 18px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 55%), var(--panel);
+    }
+
+    .mainHeader h1{margin:0;font-size:18px;letter-spacing:.2px}
+    .mainHeader p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.35;max-width:88ch}
+
+    .mainBody{overflow:auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 70%), var(--panel)}
+
+    .card{border:1px solid var(--border);border-radius:var(--radius);padding:14px 14px;background:rgba(255,255,255,.02);margin-bottom:12px}
+    .card h2{margin:0 0 10px;font-size:16px}
+    .card h3{margin:14px 0 8px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .card p,.card li{font-size:14px;line-height:1.45}
+    .muted{color:var(--muted)}
+
+    .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--border);background:var(--chip);color:var(--text);margin:0 6px 6px 0}
+
+    .callout{border:1px solid rgba(0,163,196,.40);background:rgba(0,163,196,.10);border-radius:var(--radius);padding:12px 12px;margin:10px 0}
+
+    .table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .table th,.table td{padding:10px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:13px}
+    .table th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.10em}
+    .table tr:last-child td{border-bottom:none}
+
+    .mono{font-family:var(--mono)}
+
+    .checklist{display:grid;gap:10px}
+    .checkRow{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02)}
+    .checkRow input{transform:translateY(2px)}
+    .checkRow b{display:block;margin-bottom:2px}
+
+    .notes{width:100%;min-height:120px;resize:vertical;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);outline:none}
+    .notes:focus{box-shadow:var(--focus)}
+
+    .mainFooter{padding:14px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--panel2)}
+
+    .toast{position:fixed;right:18px;bottom:18px;max-width:380px;z-index:60;border:1px solid var(--border);border-radius:14px;background:var(--panel);box-shadow:var(--shadow);padding:12px 12px;display:none}
+    .toast.show{display:block;animation:pop .18s ease}
+    @keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .toast .tt{font-weight:950;margin:0 0 4px}
+    .toast .tm{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+
+    /* First run tutorial */
+    .tourBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none}
+    .tourBackdrop.show{display:block}
+    .tourBox{position:fixed;z-index:81;max-width:380px;background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:12px 12px;display:none}
+    .tourBox.show{display:block}
+    .tourBox .h{font-weight:950;margin:0 0 6px}
+    .tourBox .b{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.35}
+    .tourHighlight{position:fixed;z-index:82;border-radius:14px;box-shadow:0 0 0 3px rgba(0,163,196,.35), 0 0 0 9999px rgba(0,0,0,.55);display:none}
+    .tourHighlight.show{display:block}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="panel sidebar" aria-label="Training navigation">
+      <div class="topbar">
+        <div class="brand">
+          <div class="t">CustomerDynamics.com | Velocity</div>
+          <div class="s">Interactive training - progress saved locally</div>
+        </div>
+        <button class="pill" id="themeBtn" type="button" aria-label="Toggle theme">
+          <span id="themeIcon">◐</span>
+          <span id="themeText">Dark</span>
+        </button>
+      </div>
+
+      <div class="meta">
+        <div class="progressWrap">
+          <div class="progress" aria-label="Course progress"><div id="progressBar"></div></div>
+          <div class="pct" id="progressPct">0%</div>
+        </div>
+        <div class="row">
+          <button class="btn small" id="resumeBtn" type="button">Resume</button>
+          <button class="btn small" id="markLessonDoneBtn" type="button">Mark lesson done</button>
+          <button class="btn small" id="resetBtn" type="button">Reset</button>
+        </div>
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Search lessons" autocomplete="off" />
+        </div>
+      </div>
+
+      <nav class="nav" id="nav"></nav>
+
+      <div style="padding: 12px 14px; border-top: 1px solid var(--border);">
+        <div class="muted" style="font-size:12px;line-height:1.35;">
+          Tip: Press <span class="mono">Ctrl+K</span> to jump to search.
+        </div>
+      </div>
+    </aside>
+
+    <main class="panel main" aria-label="Training content">
+      <header class="mainHeader">
+        <div>
+          <h1 id="lessonTitle">Loading</h1>
+          <p id="lessonDesc" class="muted">Preparing training modules.</p>
+        </div>
+        <div class="row">
+          <button class="pill" id="glossaryBtn" type="button" title="Glossary">Glossary</button>
+        </div>
+      </header>
+
+      <section class="mainBody" id="content"></section>
+
+      <footer class="mainFooter">
+        <button class="btn" id="prevBtn" type="button">Prev</button>
+        <div class="row">
+          <button class="btn" id="saveBtn" type="button">Save</button>
+          <button class="btn primary" id="nextBtn" type="button">Next</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <p class="tt" id="toastTitle">Saved</p>
+    <p class="tm" id="toastMsg">Progress cached locally.</p>
+  </div>
+
+  <div class="tourBackdrop" id="tourBackdrop"></div>
+  <div class="tourHighlight" id="tourHighlight"></div>
+  <div class="tourBox" id="tourBox">
+    <p class="h" id="tourH">Welcome</p>
+    <p class="b" id="tourB">This wizard guides you through Velocity tasks.</p>
+    <div class="row" style="justify-content:flex-end;">
+      <button class="btn small" id="tourNext" type="button">Next</button>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    "use strict";
+
+    /*
+      Velocity Training Wizard
+      - End users learn only
+      - Content compiled from embedded JSON how-to library
+      - No external loading, no user import
+    */
+
+    const HOWTOS = "+full+";
+
+    const STORAGE_KEY = "velocity_training_site_v2";
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function esc(s){
+      return String(s??"")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;");
+    }
+
+    function toast(title,msg){
+      $("#toastTitle").textContent = title;
+      $("#toastMsg").textContent = msg;
+      const t=$("#toast");
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"),2000);
+    }
+
+    const state = {
+      theme: "dark",
+      tutorialDone: false,
+      activeLessonId: null,
+      lessonDone: {},
+      checklistDone: {},
+      notes: {}
+    };
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const obj = JSON.parse(raw);
+        if(obj && typeof obj === "object") Object.assign(state,obj);
+      }catch(_e){}
+    }
+
+    function saveState(silent=false){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+      if(!silent) toast("Saved","Progress cached locally.");
+    }
+
+    function setTheme(theme){
+      state.theme = (theme === "light") ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", state.theme);
+      $("#themeIcon").textContent = state.theme === "light" ? "☀" : "◐";
+      $("#themeText").textContent = state.theme === "light" ? "Light" : "Dark";
+    }
+
+    function titleFromId(id){
+      return String(id||"")
+        .split("_")
+        .filter(Boolean)
+        .map(w=>w.charAt(0).toUpperCase()+w.slice(1))
+        .join(" ");
+    }
+
+    function normalizeHowtos(raw){
+      const arr = Array.isArray(raw) ? raw : [];
+      return arr
+        .filter(h => h && typeof h === "object" && h.how_to_id)
+        .map(h => ({
+          ...h,
+          metadata: h.metadata || {},
+          steps: Array.isArray(h.steps) ? h.steps : [],
+          preconditions: Array.isArray(h.preconditions) ? h.preconditions : [],
+          verification_procedure: Array.isArray(h.verification_procedure) ? h.verification_procedure : [],
+          dependencies: Array.isArray(h.dependencies) ? h.dependencies : []
+        }));
+    }
+
+    const howtos = normalizeHowtos(HOWTOS);
+
+    function buildModules(){
+      const byModule = new Map();
+      for(const h of howtos){
+        const module = String(h.metadata.module || "Learning Modules");
+        if(!byModule.has(module)) byModule.set(module, []);
+        byModule.get(module).push(h);
+      }
+
+      const modules = Array.from(byModule.entries()).map(([module, list]) => {
+        list.sort((a,b)=>{
+          const fa = String(a.metadata.feature_area||"").localeCompare(String(b.metadata.feature_area||""));
+          if(fa!==0) return fa;
+          return String(a.how_to_id).localeCompare(String(b.how_to_id));
+        });
+        return {
+          title: module,
+          lessons: list.map(h => ({
+            id: h.how_to_id,
+            title: titleFromId(h.how_to_id),
+            desc: h.business_objective || "",
+            howto: h
+          }))
+        };
+      });
+
+      modules.sort((a,b)=>String(a.title).localeCompare(String(b.title)));
+
+      // Prepend the in-app tutorial as module 0
+      modules.unshift({
+        title: "Start Here",
+        lessons: [
+          {
+            id: "ui_tutorial",
+            title: "How to use this training wizard",
+            desc: "One-time walkthrough of the tools and navigation.",
+            howto: {
+              how_to_id: "ui_tutorial",
+              metadata: { module: "Start Here", feature_area: "Tutorial", difficulty: "beginner", estimated_time_minutes: 2, requires_permissions: [] },
+              business_objective: "Learn how to navigate modules, track progress, and resume where you left off.",
+              preconditions: [],
+              navigation_path: "N/A",
+              steps: [
+                { step_number: 1, action: "Use the module list", ui_location: "Left navigation", validation_expected: "You can click any lesson title to open it." },
+                { step_number: 2, action: "Mark a lesson done", ui_location: "Left panel button", validation_expected: "The green dot appears next to the lesson." },
+                { step_number: 3, action: "Save and resume", ui_location: "Bottom buttons", validation_expected: "Reloading the page restores your place." }
+              ],
+              system_behavior_after_completion: "Your progress is stored in this browser only.",
+              verification_procedure: [
+                "Mark this tutorial lesson done.",
+                "Click Next to open the first learning lesson." 
+              ],
+              rollback_procedure: "Use Reset to clear local progress.",
+              dependencies: []
+            }
+          }
+        ]
+      });
+
+      // Safety: always at least one lesson
+      if(modules.length === 0){
+        modules.push({ title:"Learning Modules", lessons:[{ id:"empty", title:"No content", desc:"No how-to content found.", howto:null }]});
+      }
+
+      return modules;
+    }
+
+    const modules = buildModules();
+
+    function flattenLessons(){
+      const out=[];
+      for(const m of modules){
+        for(const l of m.lessons){
+          out.push({ module: m.title, ...l });
+        }
+      }
+      return out;
+    }
+
+    let lessons = flattenLessons();
+
+    function getLessonIndexById(id){
+      return lessons.findIndex(l=>l.id===id);
+    }
+
+    function currentLesson(){
+      if(!lessons.length) return null;
+      const idx = getLessonIndexById(state.activeLessonId);
+      return idx >= 0 ? lessons[idx] : lessons[0];
+    }
+
+    function updateProgress(){
+      const total = lessons.length;
+      let done = 0;
+      for(const l of lessons){
+        if(state.lessonDone[l.id]) done++;
+      }
+      const pct = total ? Math.round((done/total)*100) : 0;
+      $("#progressBar").style.width = pct + "%";
+      $("#progressPct").textContent = `${pct}% (${done}/${total})`;
+
+      // Update nav dots
+      for(const l of lessons){
+        const dot = document.querySelector(`[data-dot-for="${CSS.escape(l.id)}"]`);
+        if(dot) dot.classList.toggle("done", !!state.lessonDone[l.id]);
+      }
+    }
+
+    function buildNav(){
+      const nav = $("#nav");
+      nav.innerHTML = "";
+
+      for(const m of modules){
+        const wrap = document.createElement("div");
+        wrap.className = "navGroup";
+
+        const h = document.createElement("h4");
+        h.textContent = m.title;
+        wrap.appendChild(h);
+
+        for(const l of m.lessons){
+          const item = document.createElement("div");
+          item.className = "navItem";
+          item.dataset.lessonId = l.id;
+          item.tabIndex = 0;
+          item.setAttribute("role","button");
+          item.setAttribute("aria-label",`Open lesson: ${l.title}`);
+
+          const dot = document.createElement("div");
+          dot.className = "dot";
+          dot.dataset.dotFor = l.id;
+
+          const text = document.createElement("div");
+          text.style.minWidth = "0";
+          text.innerHTML = `<div style="font-weight:950;font-size:13px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(l.title)}</div>
+                            <div class="muted" style="font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;">${esc(l.desc||"")}</div>`;
+
+          const badge = document.createElement("div");
+          badge.className = "badge";
+          badge.textContent = "";
+
+          item.appendChild(dot);
+          item.appendChild(text);
+          item.appendChild(badge);
+
+          item.addEventListener("click", ()=>goTo(l.id));
+          item.addEventListener("keydown", (e)=>{
+            if(e.key==="Enter" || e.key===" ") { e.preventDefault(); goTo(l.id); }
+          });
+
+          wrap.appendChild(item);
+        }
+
+        nav.appendChild(wrap);
+      }
+
+      updateNavUI( $("#searchInput").value );
+    }
+
+    function updateNavUI(filterText=""){
+      const needle = filterText.trim().toLowerCase();
+      const items = $$(".navItem");
+      for(const item of items){
+        const id = item.dataset.lessonId;
+        const l = lessons.find(x=>x.id===id);
+        item.classList.toggle("active", id===state.activeLessonId);
+
+        if(!needle) item.style.display = "grid";
+        else{
+          const hay = `${l?.title||""} ${l?.desc||""} ${l?.module||""}`.toLowerCase();
+          item.style.display = hay.includes(needle) ? "grid" : "none";
+        }
+      }
+    }
+
+    function goTo(id){
+      const idx = getLessonIndexById(id);
+      if(idx < 0) return;
+      state.activeLessonId = id;
+      render();
+      updateNavUI( $("#searchInput").value );
+      $("#content").scrollTop = 0;
+      saveState(true);
+    }
+
+    function goNext(){
+      const idx = getLessonIndexById(state.activeLessonId);
+      if(idx < 0) return;
+      const next = lessons[idx+1];
+      if(next) goTo(next.id);
+      else toast("End","You are on the last lesson.");
+    }
+
+    function goPrev(){
+      const idx = getLessonIndexById(state.activeLessonId);
+      if(idx < 0) return;
+      const prev = lessons[idx-1];
+      if(prev) goTo(prev.id);
+      else toast("Start","You are on the first lesson.");
+    }
+
+    function checklistKey(lessonId, itemId){
+      return `${lessonId}::${itemId}`;
+    }
+
+    function renderLessonHTML(h, lessonId){
+      if(!h){
+        return `<div class="card"><h2>Lesson unavailable</h2><p class="muted">No content found for this lesson.</p></div>`;
+      }
+
+      const md = h.metadata || {};
+      const perms = Array.isArray(md.requires_permissions) ? md.requires_permissions : [];
+
+      const chips = [
+        md.feature_area ? `Feature: ${md.feature_area}` : null,
+        md.difficulty ? `Difficulty: ${md.difficulty}` : null,
+        Number.isFinite(md.estimated_time_minutes) ? `Time: ${md.estimated_time_minutes} min` : null,
+        perms.length ? `Permissions: ${perms.join(", ")}` : null
+      ].filter(Boolean).map(t=>`<span class="chip">${esc(t)}</span>`).join("");
+
+      const pre = (h.preconditions || []).map(x=>`<li>${esc(x)}</li>`).join("");
+
+      const rows = (h.steps || []).map(s=>{
+        const ce = s.common_errors ? `<div class="muted" style="margin-top:6px;"><b>Common errors:</b> ${esc(s.common_errors)}</div>` : "";
+        const fn = s.field_name ? `<div class="muted"><b>Field:</b> ${esc(s.field_name)}</div>` : "";
+        const vt = s.value_type ? `<div class="muted"><b>Value type:</b> ${esc(s.value_type)}</div>` : "";
+
+        // Checklist item id: step_{n}
+        const itemId = `step_${s.step_number}`;
+        const ck = checklistKey(lessonId, itemId);
+        const checked = !!state.checklistDone[ck];
+
+        return `
+          <tr>
+            <td class="mono">${esc(s.step_number)}</td>
+            <td>
+              <div style="font-weight:950;">${esc(s.action||"")}</div>
+              ${fn}${vt}
+            </td>
+            <td>${esc(s.ui_location||"")}</td>
+            <td>${esc(s.validation_expected||"")}${ce}</td>
+            <td style="width:88px;">
+              <label class="muted" style="display:flex;gap:8px;align-items:center;">
+                <input type="checkbox" data-ck="${esc(ck)}" ${checked ? "checked" : ""} />
+                <span class="mono">Done</span>
+              </label>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      const verifyItems = (h.verification_procedure || []).map((v,i)=>{
+        const itemId = `verify_${i+1}`;
+        const ck = checklistKey(lessonId, itemId);
+        const checked = !!state.checklistDone[ck];
+        return `
+          <div class="checkRow">
+            <input type="checkbox" data-ck="${esc(ck)}" ${checked ? "checked" : ""} />
+            <div>
+              <b>Verification</b>
+              <div>${esc(v)}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const depChips = (h.dependencies || []).map(d=>`<span class="chip">${esc(titleFromId(d))}</span>`).join("");
+
+      const note = state.notes[lessonId] || "";
+
+      return `
+        <div class="card">
+          <h2>Objective</h2>
+          <p>${esc(h.business_objective||"")}</p>
+          <div style="margin-top:8px;">${chips}</div>
+          <div class="callout" style="margin-top:12px;">
+            <b>Navigation path:</b> <span class="mono">${esc(h.navigation_path||"")}</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Preconditions</h2>
+          ${pre ? `<ul>${pre}</ul>` : `<p class="muted">None listed.</p>`}
+        </div>
+
+        <div class="card">
+          <h2>Procedure</h2>
+          <p class="muted">Use the Done checkboxes to track your learning. They do not block navigation.</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Action</th>
+                <th>UI location</th>
+                <th>Validation</th>
+                <th>Track</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows || `<tr><td colspan="5" class="muted">No steps provided.</td></tr>`}
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top:10px;">
+            <b>Tip:</b> If your screen does not match the validation text, stop and re-check the navigation path.
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>System behavior after completion</h2>
+          <p>${esc(h.system_behavior_after_completion||"")}</p>
+        </div>
+
+        <div class="card">
+          <h2>Verification</h2>
+          <div class="checklist">
+            ${verifyItems || `<p class="muted">No verification steps provided.</p>`}
+          </div>
+        </div>
+
+        ${h.rollback_procedure ? `
+          <div class="card">
+            <h2>Rollback</h2>
+            <p>${esc(h.rollback_procedure)}</p>
+          </div>
+        ` : ""}
+
+        <div class="card">
+          <h2>Dependencies</h2>
+          ${depChips ? `<div>${depChips}</div>` : `<p class="muted">None.</p>`}
+        </div>
+
+        <div class="card">
+          <h2>Your notes</h2>
+          <textarea class="notes" id="notesBox" placeholder="Write your notes for this lesson">${esc(note)}</textarea>
+          <div class="row" style="justify-content:flex-end;margin-top:10px;">
+            <button class="btn small" id="saveNotesBtn" type="button">Save notes</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function render(){
+      const l = currentLesson();
+      if(!l){
+        $("#lessonTitle").textContent = "No lessons";
+        $("#lessonDesc").textContent = "Training content could not be initialized.";
+        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the embedded JSON.</p></div>`;
+        $("#prevBtn").disabled = true;
+        $("#nextBtn").disabled = true;
+        updateProgress();
+        return;
+      }
+
+      $("#lessonTitle").textContent = l.title || "Untitled";
+      $("#lessonDesc").textContent = l.desc || "";
+
+      $("#content").innerHTML = renderLessonHTML(l.howto, l.id);
+
+      // Wire checklist checkboxes
+      for(const cb of $$("input[type=checkbox][data-ck]")){
+        cb.addEventListener("change", (e)=>{
+          const key = e.target.getAttribute("data-ck");
+          state.checklistDone[key] = !!e.target.checked;
+          saveState(true);
+        });
+      }
+
+      // Notes
+      const saveNotesBtn = $("#saveNotesBtn");
+      const notesBox = $("#notesBox");
+      if(saveNotesBtn && notesBox){
+        saveNotesBtn.addEventListener("click", ()=>{
+          state.notes[l.id] = notesBox.value || "";
+          saveState(true);
+          toast("Saved","Notes saved.");
+        });
+      }
+
+      updateNavUI($("#searchInput").value);
+      updateProgress();
+
+      const idx = getLessonIndexById(l.id);
+      $("#prevBtn").disabled = idx <= 0;
+      $("#nextBtn").disabled = idx >= lessons.length - 1;
+    }
+
+    function markCurrentLessonDone(){
+      const l = currentLesson();
+      if(!l) return;
+      state.lessonDone[l.id] = true;
+      saveState(true);
+      updateProgress();
+      toast("Done","Lesson marked complete.");
+    }
+
+    function resetAll(){
+      const ok = confirm("Reset all local progress for this training wizard? This cannot be undone.");
+      if(!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      state.theme = "dark";
+      state.tutorialDone = false;
+      state.activeLessonId = null;
+      state.lessonDone = {};
+      state.checklistDone = {};
+      state.notes = {};
+      setTheme(state.theme);
+      // Rebuild lesson list from modules
+      lessons = flattenLessons();
+      state.activeLessonId = lessons[0]?.id || null;
+      buildNav();
+      render();
+      toast("Reset","Progress cleared.");
+      startTourIfNeeded(true);
+    }
+
+    function openGlossary(){
+      const html = `
+        <div class="card" style="margin:0;">
+          <p class="muted">Glossary for common Velocity terms used in this training.</p>
+          <table class="table">
+            <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><b>Segment</b></td><td>A filtered set of contacts used to build an outreach list.</td></tr>
+              <tr><td><b>Profile</b></td><td>Rules that define eligibility, suppression, cadence, and constraints.</td></tr>
+              <tr><td><b>Call window</b></td><td>Permitted dialing time ranges based on contact timezone and policy.</td></tr>
+              <tr><td><b>DNC</b></td><td>Do Not Call suppression sources that block outreach.</td></tr>
+              <tr><td><b>S O R</b></td><td>System of record.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      const overlay = document.createElement("div");
+      overlay.style.position="fixed";
+      overlay.style.inset="0";
+      overlay.style.background="rgba(0,0,0,.55)";
+      overlay.style.zIndex="70";
+      overlay.style.display="grid";
+      overlay.style.placeItems="center";
+      overlay.style.padding="18px";
+
+      const modal = document.createElement("div");
+      modal.className="panel";
+      modal.style.width="min(920px, 100%)";
+      modal.style.maxHeight="min(82vh, 760px)";
+      modal.style.display="grid";
+      modal.style.gridTemplateRows="auto 1fr";
+
+      const head = document.createElement("div");
+      head.style.padding="14px 16px";
+      head.style.borderBottom="1px solid var(--border)";
+      head.style.display="flex";
+      head.style.justifyContent="space-between";
+      head.style.alignItems="center";
+      head.innerHTML = `<div style="font-weight:950;">Glossary</div>`;
+
+      const close = document.createElement("button");
+      close.className = "btn small";
+      close.textContent = "Close";
+      close.addEventListener("click", ()=>overlay.remove());
+      head.appendChild(close);
+
+      const body = document.createElement("div");
+      body.className = "mainBody";
+      body.style.maxHeight = "unset";
+      body.innerHTML = html;
+
+      modal.appendChild(head);
+      modal.appendChild(body);
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+
+      const escKey = (e)=>{ if(e.key==="Escape"){ overlay.remove(); window.removeEventListener("keydown", escKey); } };
+      window.addEventListener("keydown", escKey);
+      overlay.addEventListener("click", (e)=>{ if(e.target===overlay) overlay.remove(); });
+    }
+
+    function wire(){
+      $("#themeBtn").addEventListener("click", ()=>{
+        setTheme(state.theme === "light" ? "dark" : "light");
+        saveState(true);
+      });
+
+      $("#prevBtn").addEventListener("click", ()=>goPrev());
+      $("#nextBtn").addEventListener("click", ()=>goNext());
+      $("#saveBtn").addEventListener("click", ()=>saveState(false));
+
+      $("#resumeBtn").addEventListener("click", ()=>{
+        const id = state.activeLessonId || lessons[0]?.id;
+        if(id) goTo(id);
+      });
+
+      $("#markLessonDoneBtn").addEventListener("click", ()=>markCurrentLessonDone());
+      $("#resetBtn").addEventListener("click", ()=>resetAll());
+
+      $("#glossaryBtn").addEventListener("click", ()=>openGlossary());
+
+      $("#searchInput").addEventListener("input", (e)=>updateNavUI(e.target.value));
+
+      window.addEventListener("keydown", (e)=>{
+        if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==="k"){
+          e.preventDefault();
+          $("#searchInput").focus();
+        }
+      });
+    }
+
+    /* First run tour: locks the user into the tutorial module until completed */
+    const tour = {
+      step: 0,
+      steps: [
+        {
+          title: "Welcome to Velocity Training",
+          body: "This wizard teaches you how to complete tasks in Velocity. Progress is saved locally in your browser.",
+          target: "#themeBtn"
+        },
+        {
+          title: "Modules and lessons",
+          body: "Use the left navigation to open lessons. Green dots indicate lessons you have marked done.",
+          target: "#nav"
+        },
+        {
+          title: "Track completion",
+          body: "Click Mark lesson done to record completion. Next and Prev move through lessons.",
+          target: "#markLessonDoneBtn"
+        }
+      ]
+    };
+
+    function placeTour(targetSel){
+      const el = $(targetSel);
+      const box = $("#tourBox");
+      const hi = $("#tourHighlight");
+      const back = $("#tourBackdrop");
+      if(!el) return;
+
+      const r = el.getBoundingClientRect();
+      hi.style.left = (r.left - 8) + "px";
+      hi.style.top = (r.top - 8) + "px";
+      hi.style.width = (r.width + 16) + "px";
+      hi.style.height = (r.height + 16) + "px";
+
+      const margin = 12;
+      let left = Math.min(window.innerWidth - 420, r.left);
+      left = Math.max(margin, left);
+      let top = r.bottom + 12;
+      if(top + 220 > window.innerHeight) top = Math.max(margin, r.top - 220);
+
+      box.style.left = left + "px";
+      box.style.top = top + "px";
+
+      back.classList.add("show");
+      hi.classList.add("show");
+      box.classList.add("show");
+    }
+
+    function hideTour(){
+      $("#tourBackdrop").classList.remove("show");
+      $("#tourHighlight").classList.remove("show");
+      $("#tourBox").classList.remove("show");
+    }
+
+    function startTourIfNeeded(force=false){
+      if(state.tutorialDone && !force) return;
+
+      // Lock user into tutorial lesson
+      state.activeLessonId = "ui_tutorial";
+      buildNav();
+      render();
+      updateNavUI($("#searchInput").value);
+
+      tour.step = 0;
+      const s = tour.steps[tour.step];
+      $("#tourH").textContent = s.title;
+      $("#tourB").textContent = s.body;
+      placeTour(s.target);
+
+      // Prevent clicking outside
+      $("#tourBackdrop").addEventListener("click", (e)=>{ e.preventDefault(); e.stopPropagation(); }, { once:false });
+    }
+
+    function advanceTour(){
+      tour.step++;
+      if(tour.step >= tour.steps.length){
+        hideTour();
+        state.tutorialDone = true;
+        // Mark tutorial lesson done automatically
+        state.lessonDone["ui_tutorial"] = true;
+        saveState(true);
+
+        // Move to first non-tutorial lesson if available
+        const firstNon = lessons.find(x=>x.id!=="ui_tutorial");
+        if(firstNon) goTo(firstNon.id);
+        else render();
+
+        toast("Ready","Tutorial complete. Start learning.");
+        return;
+      }
+      const s = tour.steps[tour.step];
+      $("#tourH").textContent = s.title;
+      $("#tourB").textContent = s.body;
+      placeTour(s.target);
+    }
+
+    function init(){
+      loadState();
+      setTheme(state.theme || "dark");
+
+      // Ensure lesson list exists
+      lessons = flattenLessons();
+
+      // Set safe active lesson
+      if(!state.activeLessonId || getLessonIndexById(state.activeLessonId) < 0){
+        state.activeLessonId = lessons[0]?.id || null;
+      }
+
+      buildNav();
+      wire();
+      render();
+      updateProgress();
+
+      $("#tourNext").addEventListener("click", ()=>advanceTour());
+      window.addEventListener("resize", ()=>{
+        if($("#tourBox").classList.contains("show")){
+          const s = tour.steps[tour.step];
+          placeTour(s.target);
+        }
+      });
+
+      // Start tour on first run
+      startTourIfNeeded(false);
+
+      toast("Loaded","Training ready.");
+    }
+
+    init();
+  })();
+  </script>
+
+  <script>
+    // Embedded JSON library
+    // NOTE: This is replaced server-side when generating the file.
+    // Kept as a separate script tag so it stays readable.
+  </script>
+</body>
+</html>
