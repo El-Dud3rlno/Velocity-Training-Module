@@ -322,7 +322,105 @@
       - No external loading, no user import
     */
 
-    const HOWTOS = "+full+";
+    const HOWTOS = [
+      {
+        how_to_id: "create_custom_field",
+        metadata: {
+          difficulty: "beginner",
+          estimated_time_minutes: 5,
+          feature_area: "Custom Fields",
+          module: "Contacts",
+          requires_permissions: ["Admin"]
+        },
+        business_objective: "Add new data columns to contact records so operators can store and use additional information when filtering or segmenting contacts.",
+        navigation_path: "Home > Inventory > Contacts > Custom Fields",
+        preconditions: [
+          "User has Admin permission to manage custom fields",
+          "Desired display label and API field name are known"
+        ],
+        steps: [
+          {
+            action: "Click",
+            common_errors: null,
+            field_name: "Contacts",
+            step_number: 1,
+            ui_location: "Left navigation under Inventory",
+            validation_expected: "Contacts menu expands showing Contact Inventory and Custom Fields",
+            value_type: null
+          },
+          {
+            action: "Click",
+            common_errors: null,
+            field_name: "Custom Fields",
+            step_number: 2,
+            ui_location: "Left navigation under Contacts",
+            validation_expected: "Custom Fields page loads with a table of existing fields",
+            value_type: null
+          },
+          {
+            action: "Click",
+            common_errors: null,
+            field_name: "+ Custom Field",
+            step_number: 3,
+            ui_location: "Top‑right of the Custom Fields page",
+            validation_expected: "Create Custom Field modal opens",
+            value_type: null
+          },
+          {
+            action: "Enter",
+            common_errors: "Leaving this field blank will prevent creation",
+            field_name: "Display Label",
+            step_number: 4,
+            ui_location: "Create Custom Field modal",
+            validation_expected: "Display Label field is populated",
+            value_type: "text"
+          },
+          {
+            action: "Enter",
+            common_errors: "Field name must be unique and alphanumeric",
+            field_name: "Field Name",
+            step_number: 5,
+            ui_location: "Create Custom Field modal",
+            validation_expected: "Field Name is populated",
+            value_type: "text"
+          },
+          {
+            action: "Select",
+            common_errors: null,
+            field_name: "Data Type",
+            step_number: 6,
+            ui_location: "Create Custom Field modal",
+            validation_expected: "Selected data type appears (e.g., String, Number)",
+            value_type: "enum"
+          },
+          {
+            action: "Toggle",
+            common_errors: null,
+            field_name: "Is Point of Contact?",
+            step_number: 7,
+            ui_location: "Create Custom Field modal",
+            validation_expected: "Checkbox is selected if this field should be a contact identifier",
+            value_type: "boolean"
+          },
+          {
+            action: "Click",
+            common_errors: "Duplicate field name or missing required fields",
+            field_name: "Create",
+            step_number: 8,
+            ui_location: "Create Custom Field modal",
+            validation_expected: "Modal closes and the new field appears in the Custom Fields table",
+            value_type: null
+          }
+        ],
+        system_behavior_after_completion: "The custom field is saved and listed under Custom Fields. It becomes available for use in contact records, imports, and segment filters.",
+        verification_procedure: [
+          "Return to the Custom Fields page and confirm the new field appears in the table with the correct label, type and name",
+          "Navigate to a contact record or import mapping to ensure the new field is selectable"
+        ],
+        rollback_procedure: "Navigate to Contacts > Custom Fields, locate the field in the table, click the trash icon in the Actions column, and confirm deletion. Deletion permanently removes the field and its data.",
+        dependencies: []
+      }
+    ];
 
     const STORAGE_KEY = "velocity_training_site_v2";
 
