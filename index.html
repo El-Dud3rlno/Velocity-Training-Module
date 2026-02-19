@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Velocity Training | Customer Dynamics</title>
+  <title>Velocity User Manual | Customer Dynamics</title>
   <style>
     :root{
       --bg:#0b1f3b;
@@ -265,17 +265,17 @@
     <div class="brandWrap">
       <div class="brandMark" aria-hidden="true">V</div>
       <div class="brandText">
-        <span class="product">Velocity Training</span>
+        <span class="product">Velocity User Manual</span>
         <span class="company">Customer Dynamics</span>
       </div>
     </div>
   </header>
 
   <div class="app" id="app">
-    <aside class="panel sidebar" aria-label="Training navigation">
+    <aside class="panel sidebar" aria-label="User manual navigation">
       <div class="topbar">
         <div class="brand">
-          <div class="t">Velocity Training Workspace</div>
+          <div class="t">Velocity User Manual Workspace</div>
           <div class="s">Structured lessons for platform operations</div>
         </div>
         <button class="pill" id="themeBtn" type="button" aria-label="Toggle theme">
@@ -308,11 +308,11 @@
       </div>
     </aside>
 
-    <main class="panel main" aria-label="Training content">
+    <main class="panel main" aria-label="User manual content">
       <header class="mainHeader">
         <div>
           <h1 id="lessonTitle">Loading</h1>
-          <p id="lessonDesc" class="muted">Preparing training modules.</p>
+          <p id="lessonDesc" class="muted">Preparing user manual content.</p>
         </div>
         <div class="row">
           <button class="pill" id="glossaryBtn" type="button" title="Glossary">Glossary</button>
@@ -351,9 +351,9 @@
     "use strict";
 
     /*
-      Velocity Training Wizard
+      Velocity User Manual
       - End users learn only
-      - Content compiled from the embedded training library
+      - Content compiled from the embedded user manual library
     */
 
     const EMBEDDED_HOWTOS = [
@@ -3036,7 +3036,7 @@
       }
     ];
 
-    const STORAGE_KEY = "velocity_training_site_v2";
+    const STORAGE_KEY = "velocity_user_manual_site_v2";
 
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
@@ -3115,7 +3115,7 @@
 
     async function loadHowtosFromJson(){
       try{
-        const res = await fetch("./VelocityLLM Training Guide.json", { cache: "no-store" });
+        const res = await fetch("./VelocityLLM User Manual Guide.json", { cache: "no-store" });
         if(!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         const normalized = normalizeHowtos(data);
@@ -3156,7 +3156,7 @@
         lessons: [
           {
             id: "ui_tutorial",
-            title: "How to use this training wizard",
+            title: "How to use this user manual",
             desc: "One-time walkthrough of the tools and navigation.",
             howto: {
               how_to_id: "ui_tutorial",
@@ -3467,8 +3467,8 @@
       const l = currentLesson();
       if(!l){
         $("#lessonTitle").textContent = "No lessons";
-        $("#lessonDesc").textContent = "Training content could not be initialized.";
-        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the training library. The embedded training data may be missing or corrupt.</p></div>`;
+        $("#lessonDesc").textContent = "User manual content could not be initialized.";
+        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the user manual library. The embedded user manual data may be missing or corrupt.</p></div>`;
         $("#prevBtn").disabled = true;
         $("#nextBtn").disabled = true;
         updateProgress();
@@ -3518,7 +3518,7 @@
     }
 
     function resetAll(){
-      const ok = confirm("Reset all local progress for this training wizard? This cannot be undone.");
+      const ok = confirm("Reset all local progress for this user manual? This cannot be undone.");
       if(!ok) return;
       localStorage.removeItem(STORAGE_KEY);
       state.theme = "dark";
@@ -3540,7 +3540,7 @@
     function openGlossary(){
       const html = `
         <div class="card" style="margin:0;">
-          <p class="muted">Glossary for common Velocity terms used in this training.</p>
+          <p class="muted">Glossary for common Velocity terms used in this user manual.</p>
           <table class="table">
             <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
             <tbody>
@@ -3634,7 +3634,7 @@
       step: 0,
       steps: [
         {
-          title: "Welcome to Velocity Training",
+          title: "Welcome to the Velocity User Manual",
           body: "This wizard teaches you how to complete tasks in Velocity. Progress is saved locally in your browser.",
           target: "#themeBtn"
         },
@@ -3757,7 +3757,7 @@
       // Start tour on first run
       startTourIfNeeded(false);
 
-      toast("Loaded","Training ready.");
+      toast("Loaded","User manual ready.");
     }
 
     init();
