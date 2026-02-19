@@ -1,1 +1,1 @@
-# Velocity-Training-Module
+# Velocity-User-Manual
