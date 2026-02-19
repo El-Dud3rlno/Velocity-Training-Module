@@ -3,51 +3,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CustomerDynamics.com | Velocity Training</title>
+  <title>Velocity Training | Customer Dynamics</title>
   <style>
     :root{
-      --bg:#0b1020;
-      --panel:#0f162d;
-      --panel2:#0b1329;
-      --text:#e7edf7;
-      --muted:#a8b3c8;
-      --border:rgba(255,255,255,.10);
-      --shadow:0 14px 30px rgba(0,0,0,.35);
-      --accent:#00a3c4;
-      --accent2:#2f6fed;
-      --good:#22c55e;
-      --warn:#fbbf24;
-      --bad:#fb7185;
-      --chip:rgba(0,163,196,.12);
-      --focus:0 0 0 3px rgba(0,163,196,.22);
-      --tour-bg:#dff4ff;
-      --tour-text:#082f49;
-      --tour-muted:#0f4c72;
-      --tour-border:rgba(0,126,168,.45);
+      --bg:#0b1f3b;
+      --panel:#112b52;
+      --panel2:#0e2446;
+      --text:#e6eefb;
+      --muted:#aec2e1;
+      --border:rgba(139,174,230,.24);
+      --shadow:0 16px 30px rgba(2,13,29,.40);
+      --accent:#1f66c2;
+      --accent2:#3c8ff0;
+      --good:#2bb673;
+      --warn:#f0a03a;
+      --bad:#f16674;
+      --chip:rgba(60,143,240,.17);
+      --focus:0 0 0 3px rgba(60,143,240,.30);
+      --tour-bg:#dceeff;
+      --tour-text:#0d2f57;
+      --tour-muted:#24507f;
+      --tour-border:rgba(31,102,194,.45);
       --radius:16px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
     }
 
     [data-theme="light"]{
-      --bg:#f6f7fb;
+      --bg:#eef3fb;
       --panel:#ffffff;
-      --panel2:#f1f4fb;
-      --text:#0f172a;
-      --muted:#475569;
-      --border:rgba(15,23,42,.10);
-      --shadow:0 14px 30px rgba(15,23,42,.10);
-      --accent:#007ea8;
-      --accent2:#2f6fed;
-      --good:#16a34a;
-      --warn:#b45309;
-      --bad:#e11d48;
-      --chip:rgba(0,126,168,.10);
-      --focus:0 0 0 3px rgba(0,126,168,.18);
-      --tour-bg:#ecf8ff;
-      --tour-text:#082f49;
-      --tour-muted:#1d4f72;
-      --tour-border:rgba(0,126,168,.35);
+      --panel2:#f5f8fe;
+      --text:#13294b;
+      --muted:#4e668a;
+      --border:rgba(19,41,75,.12);
+      --shadow:0 12px 26px rgba(30,62,108,.12);
+      --accent:#1f66c2;
+      --accent2:#2f7fe0;
+      --good:#1f9e63;
+      --warn:#cc7b13;
+      --bad:#d83a52;
+      --chip:rgba(31,102,194,.10);
+      --focus:0 0 0 3px rgba(31,102,194,.20);
+      --tour-bg:#e9f3ff;
+      --tour-text:#0f3a68;
+      --tour-muted:#2e5c8a;
+      --tour-border:rgba(31,102,194,.30);
     }
 
     *{box-sizing:border-box}
@@ -57,23 +57,38 @@
       font-family:var(--sans);
       color:var(--text);
       background:
-        radial-gradient(1000px 560px at 15% -10%, rgba(47,111,237,.16), transparent 60%),
-        radial-gradient(900px 520px at 90% 0%, rgba(0,163,196,.16), transparent 55%),
+        radial-gradient(1100px 620px at 15% -10%, rgba(60,143,240,.20), transparent 60%),
+        radial-gradient(980px 560px at 92% -8%, rgba(31,102,194,.16), transparent 58%),
         var(--bg);
     }
+
+    .globalHeader{
+      height:72px;
+      display:flex;
+      align-items:center;
+      padding:0 22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), transparent 90%), var(--panel);
+      border-bottom:1px solid var(--border);
+      box-shadow:0 8px 18px rgba(8,22,45,.25);
+    }
+    .brandWrap{display:flex;align-items:center;gap:12px}
+    .brandMark{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg, #f58a2a, #1f66c2 48%, #0f2b54);color:#fff;font-weight:950;box-shadow:0 6px 14px rgba(8,22,45,.35)}
+    .brandText{display:flex;flex-direction:column;line-height:1.1}
+    .brandText .product{font-weight:950;letter-spacing:.02em}
+    .brandText .company{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 
     .app{
       display:grid;
       grid-template-columns:340px 1fr;
       gap:18px;
       padding:18px;
-      height:100%;
+      height:calc(100vh - 72px);
       max-width:1500px;
       margin:0 auto;
     }
 
     @media (max-width:1020px){
-      .app{grid-template-columns:1fr;height:auto}
+      .app{grid-template-columns:1fr;height:auto;min-height:calc(100vh - 72px)}
       .sidebar{position:relative;top:0;height:auto}
       .main{position:relative;top:0;height:auto}
     }
@@ -93,7 +108,7 @@
       display:flex;align-items:center;justify-content:space-between;gap:10px;
       padding:14px 14px;
       border-bottom:1px solid var(--border);
-      background:linear-gradient(135deg, rgba(0,163,196,.16), rgba(47,111,237,.12));
+      background:linear-gradient(135deg, rgba(31,102,194,.18), rgba(60,143,240,.14));
     }
 
     .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -246,12 +261,22 @@
   </style>
 </head>
 <body>
+  <header class="globalHeader" aria-label="Product branding">
+    <div class="brandWrap">
+      <div class="brandMark" aria-hidden="true">V</div>
+      <div class="brandText">
+        <span class="product">Velocity Training</span>
+        <span class="company">Customer Dynamics</span>
+      </div>
+    </div>
+  </header>
+
   <div class="app" id="app">
     <aside class="panel sidebar" aria-label="Training navigation">
       <div class="topbar">
         <div class="brand">
-          <div class="t">CustomerDynamics.com | Velocity</div>
-          <div class="s">Interactive training - progress saved locally</div>
+          <div class="t">Velocity Training Workspace</div>
+          <div class="s">Structured lessons for platform operations</div>
         </div>
         <button class="pill" id="themeBtn" type="button" aria-label="Toggle theme">
           <span id="themeIcon">◐</span>
