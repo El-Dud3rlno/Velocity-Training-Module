@@ -318,11 +318,2688 @@
     /*
       Velocity Training Wizard
       - End users learn only
-      - Content compiled from embedded JSON how-to library
-      - No external loading, no user import
+      - Content compiled from the embedded training library
     */
 
-    const HOWTOS = "+full+";
+    const HOWTOS = [
+      {
+        "how_to_id": "create_custom_field",
+        "metadata": {
+          "module": "Contacts",
+          "feature_area": "Custom Fields",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Admin"
+          ]
+        },
+        "business_objective": "Add new data columns to contact records so operators can store and use additional information when filtering or segmenting contacts.",
+        "preconditions": [
+          "User has Admin permission to manage custom fields",
+          "Desired display label and API field name are known"
+        ],
+        "navigation_path": "Home > Inventory > Contacts > Custom Fields",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Inventory",
+            "field_name": "Contacts",
+            "value_type": null,
+            "validation_expected": "Contacts menu expands showing Contact Inventory and Custom Fields",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Left navigation under Contacts",
+            "field_name": "Custom Fields",
+            "value_type": null,
+            "validation_expected": "Custom Fields page loads with a table of existing fields",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Top\u2011right of the Custom Fields page",
+            "field_name": "+ Custom Field",
+            "value_type": null,
+            "validation_expected": "Create Custom Field modal opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "Create Custom Field modal",
+            "field_name": "Display Label",
+            "value_type": "text",
+            "validation_expected": "Display Label field is populated",
+            "common_errors": "Leaving this field blank will prevent creation"
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "Create Custom Field modal",
+            "field_name": "Field Name",
+            "value_type": "text",
+            "validation_expected": "Field Name is populated",
+            "common_errors": "Field name must be unique and alphanumeric"
+          },
+          {
+            "step_number": 6,
+            "action": "Select",
+            "ui_location": "Create Custom Field modal",
+            "field_name": "Data Type",
+            "value_type": "enum",
+            "validation_expected": "Selected data type appears (e.g., String, Number)",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Toggle",
+            "ui_location": "Create Custom Field modal",
+            "field_name": "Is Point of Contact?",
+            "value_type": "boolean",
+            "validation_expected": "Checkbox is selected if this field should be a contact identifier",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Click",
+            "ui_location": "Create Custom Field modal",
+            "field_name": "Create",
+            "value_type": null,
+            "validation_expected": "Modal closes and the new field appears in the Custom Fields table",
+            "common_errors": "Duplicate field name or missing required fields"
+          }
+        ],
+        "system_behavior_after_completion": "The custom field is saved and listed under Custom Fields. It becomes available for use in contact records, imports, and segment filters.",
+        "verification_procedure": [
+          "Return to the Custom Fields page and confirm the new field appears in the table with the correct label, type and name",
+          "Navigate to a contact record or import mapping to ensure the new field is selectable"
+        ],
+        "rollback_procedure": "Navigate to Contacts > Custom Fields, locate the field in the table, click the trash icon in the Actions column, and confirm deletion. Deletion permanently removes the field and its data.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "create_segment",
+        "metadata": {
+          "module": "Contact Segmentation",
+          "feature_area": "Segments",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 10,
+          "requires_permissions": [
+            "Admin",
+            "Segment Manager"
+          ]
+        },
+        "business_objective": "Define a group of contacts based on specific criteria so operators can target that group for dialing or messaging.",
+        "preconditions": [
+          "At least one contact record exists",
+          "Any custom fields or suppression profiles needed for rules already exist",
+          "User has permission to create segments"
+        ],
+        "navigation_path": "Home > Management > Contact Segmentation",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Inventory",
+            "field_name": "Management",
+            "value_type": null,
+            "validation_expected": "Management menu expands showing Contact Segmentation",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Management menu",
+            "field_name": "Contact Segmentation",
+            "value_type": null,
+            "validation_expected": "Segments list page opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Segments page, top\u2011right",
+            "field_name": "+ Segment",
+            "value_type": null,
+            "validation_expected": "Segment creation form appears with fields for Name, Description, Suppression Profile and Contact Query",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "Segment form",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Name field shows the entered segment name",
+            "common_errors": "Name is required"
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "Segment form",
+            "field_name": "Description",
+            "value_type": "text",
+            "validation_expected": "Description field is populated (optional)",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Select",
+            "ui_location": "Segment form",
+            "field_name": "Suppression Profile",
+            "value_type": "enum",
+            "validation_expected": "Selected suppression profile displays",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Click",
+            "ui_location": "Contact Query panel",
+            "field_name": "+ Rule",
+            "value_type": null,
+            "validation_expected": "A new rule row appears with Fields, Operators and Value inputs",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Select",
+            "ui_location": "New rule row",
+            "field_name": "Fields",
+            "value_type": "enum",
+            "validation_expected": "Field drop\u2011down shows selected field",
+            "common_errors": null
+          },
+          {
+            "step_number": 9,
+            "action": "Select",
+            "ui_location": "New rule row",
+            "field_name": "Operators",
+            "value_type": "enum",
+            "validation_expected": "Operator drop\u2011down shows selected operator",
+            "common_errors": null
+          },
+          {
+            "step_number": 10,
+            "action": "Enter",
+            "ui_location": "New rule row",
+            "field_name": "Value",
+            "value_type": "text",
+            "validation_expected": "Value field displays the entered value",
+            "common_errors": "Invalid data type for selected field"
+          },
+          {
+            "step_number": 11,
+            "action": "Repeat",
+            "ui_location": "Contact Query panel",
+            "field_name": null,
+            "value_type": null,
+            "validation_expected": "Additional rule rows can be added using + Rule or grouped using + Group",
+            "common_errors": null
+          },
+          {
+            "step_number": 12,
+            "action": "Click",
+            "ui_location": "Top\u2011right of the segment form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Segment form closes and new segment appears in the Segments list",
+            "common_errors": "Missing required fields or invalid rules"
+          }
+        ],
+        "system_behavior_after_completion": "The segment is saved and listed in the Segments table. The system will evaluate contacts against the defined rules and populate the segment accordingly.",
+        "verification_procedure": [
+          "Return to the Contact Segmentation list and verify that the segment name appears",
+          "Click the refresh or preview icon for the segment to view the included contacts and ensure they match the criteria"
+        ],
+        "rollback_procedure": "On the Segments list page, locate the segment, click the trash icon in its Actions column, and confirm deletion to remove the segment.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "setup_sftp_import",
+        "metadata": {
+          "module": "Contact Import",
+          "feature_area": "SFTP Import",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 15,
+          "requires_permissions": [
+            "Admin",
+            "Data Importer"
+          ]
+        },
+        "business_objective": "Configure an SFTP connection to automatically ingest contact data from an external system into Velocity.",
+        "preconditions": [
+          "An SFTP server and credentials (host, port, username, password and/or private key) are available",
+          "A field mapping exists to map incoming file columns to contact fields",
+          "User has permission to manage contact imports"
+        ],
+        "navigation_path": "Home > Management > Contact Import > SFTP Import",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Inventory",
+            "field_name": "Management",
+            "value_type": null,
+            "validation_expected": "Management menu expands showing Contact Import",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Management menu",
+            "field_name": "Contact Import",
+            "value_type": null,
+            "validation_expected": "Contact Import page opens with File Import and SFTP Import tabs",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Contact Import page",
+            "field_name": "SFTP Import tab",
+            "value_type": null,
+            "validation_expected": "SFTP Import tab becomes active displaying connection list",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "SFTP Import tab, top\u2011right",
+            "field_name": "+ Connection",
+            "value_type": null,
+            "validation_expected": "A connection form appears with input fields",
+            "common_errors": null
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Connection Name",
+            "value_type": "text",
+            "validation_expected": "Connection Name field is populated",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "SFTP Host",
+            "value_type": "text",
+            "validation_expected": "SFTP Host field is populated",
+            "common_errors": "Invalid hostname"
+          },
+          {
+            "step_number": 7,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Port",
+            "value_type": "number",
+            "validation_expected": "Port number is entered",
+            "common_errors": "Non\u2011numeric or incorrect port"
+          },
+          {
+            "step_number": 8,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Path",
+            "value_type": "text",
+            "validation_expected": "Remote directory or file path is entered",
+            "common_errors": "Invalid path"
+          },
+          {
+            "step_number": 9,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "User Name",
+            "value_type": "text",
+            "validation_expected": "Username field is populated",
+            "common_errors": null
+          },
+          {
+            "step_number": 10,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Password",
+            "value_type": "text",
+            "validation_expected": "Password field is populated",
+            "common_errors": "Leaving password blank when private key is not provided"
+          },
+          {
+            "step_number": 11,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Private Key",
+            "value_type": "text",
+            "validation_expected": "Private key textarea is populated (optional)",
+            "common_errors": "Invalid key format"
+          },
+          {
+            "step_number": 12,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Report Email",
+            "value_type": "text",
+            "validation_expected": "Email address is entered",
+            "common_errors": "Invalid email format"
+          },
+          {
+            "step_number": 13,
+            "action": "Select",
+            "ui_location": "Connection form",
+            "field_name": "Field Mapping",
+            "value_type": "enum",
+            "validation_expected": "Selected field mapping displays",
+            "common_errors": "No field mapping available"
+          },
+          {
+            "step_number": 14,
+            "action": "Enter",
+            "ui_location": "Connection form",
+            "field_name": "Delimiter",
+            "value_type": "text",
+            "validation_expected": "Delimiter character is entered",
+            "common_errors": null
+          },
+          {
+            "step_number": 15,
+            "action": "Click",
+            "ui_location": "Connection form",
+            "field_name": "Test Connection",
+            "value_type": null,
+            "validation_expected": "A message indicates success or failure of SFTP connection",
+            "common_errors": "If connection fails, verify credentials and try again"
+          },
+          {
+            "step_number": 16,
+            "action": "Click",
+            "ui_location": "Connection form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Form closes and new connection appears in the SFTP Import list",
+            "common_errors": "Required fields missing"
+          }
+        ],
+        "system_behavior_after_completion": "The SFTP connection is stored and used by Velocity to import contact data from the specified path according to the configured schedule.",
+        "verification_procedure": [
+          "Return to the SFTP Import tab and verify that the connection appears in the list with the correct name",
+          "Monitor import logs or wait for the scheduled import to ensure contacts are ingested"
+        ],
+        "rollback_procedure": "On the SFTP Import tab, locate the connection in the list, click the trash icon in its Actions column, and confirm deletion. This removes the connection and stops further imports.",
+        "dependencies": [
+          "configure_field_mappings"
+        ]
+      },
+      {
+        "how_to_id": "edit_segment_criteria",
+        "metadata": {
+          "module": "Contact Segmentation",
+          "feature_area": "Segments",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Admin",
+            "Segment Manager"
+          ]
+        },
+        "business_objective": "Adjust the rules of an existing segment to update which contacts are included in that segment.",
+        "preconditions": [
+          "The segment exists in the Segments list",
+          "User has permission to edit segments"
+        ],
+        "navigation_path": "Home > Management > Contact Segmentation",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Inventory",
+            "field_name": "Management",
+            "value_type": null,
+            "validation_expected": "Management menu expands",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Management menu",
+            "field_name": "Contact Segmentation",
+            "value_type": null,
+            "validation_expected": "Segments list page displays existing segments",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Locate",
+            "ui_location": "Segments list",
+            "field_name": "Target segment",
+            "value_type": null,
+            "validation_expected": "The segment row is visible",
+            "common_errors": "Segment not found"
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Segment row, Actions column",
+            "field_name": "Edit (pencil icon)",
+            "value_type": null,
+            "validation_expected": "Edit Segment form opens with existing rules",
+            "common_errors": null
+          },
+          {
+            "step_number": 5,
+            "action": "Modify",
+            "ui_location": "Contact Query section",
+            "field_name": "Existing rule",
+            "value_type": null,
+            "validation_expected": "Field, operator or value updated",
+            "common_errors": "Selecting an incompatible operator for field type"
+          },
+          {
+            "step_number": 6,
+            "action": "Delete",
+            "ui_location": "Contact Query section",
+            "field_name": "Rule trash icon",
+            "value_type": null,
+            "validation_expected": "Rule row removed",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Click",
+            "ui_location": "Contact Query section",
+            "field_name": "+ Rule",
+            "value_type": null,
+            "validation_expected": "A new blank rule row appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Configure",
+            "ui_location": "New rule row",
+            "field_name": "Field/Operator/Value",
+            "value_type": null,
+            "validation_expected": "New rule is fully defined",
+            "common_errors": null
+          },
+          {
+            "step_number": 9,
+            "action": "Click",
+            "ui_location": "Top\u2011right of the edit form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Segment criteria saved and list view returns",
+            "common_errors": "Missing required values or invalid rules"
+          }
+        ],
+        "system_behavior_after_completion": "The segment\u2019s membership is recalculated based on updated criteria; campaigns using the segment will use the updated list of contacts.",
+        "verification_procedure": [
+          "Return to the Segments list and use the preview function to confirm that the segment includes the expected contacts"
+        ],
+        "rollback_procedure": "To revert the changes, edit the segment again and restore previous rule definitions or delete and recreate the segment.",
+        "dependencies": [
+          "create_segment"
+        ]
+      },
+      {
+        "how_to_id": "bulk_import_via_csv",
+        "metadata": {
+          "module": "Contact Import",
+          "feature_area": "File Import",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 10,
+          "requires_permissions": [
+            "Admin",
+            "Data Importer"
+          ]
+        },
+        "business_objective": "Upload a CSV file of contacts in bulk so that operators can efficiently import large datasets into Velocity.",
+        "preconditions": [
+          "A field mapping has been configured to match CSV columns to contact fields",
+          "The CSV file is prepared in the required format",
+          "User has permission to import contacts"
+        ],
+        "navigation_path": "Home > Management > Contact Import > File Import",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Inventory",
+            "field_name": "Management",
+            "value_type": null,
+            "validation_expected": "Management menu expands showing Contact Import",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Management menu",
+            "field_name": "Contact Import",
+            "value_type": null,
+            "validation_expected": "Contact Import page opens with File Import and SFTP Import tabs",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Contact Import page",
+            "field_name": "File Import tab",
+            "value_type": null,
+            "validation_expected": "File Import tab becomes active",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Select",
+            "ui_location": "File Import form",
+            "field_name": "Data Type",
+            "value_type": "enum",
+            "validation_expected": "Desired data type (e.g., Contact) appears in the dropdown",
+            "common_errors": "Leaving data type unset"
+          },
+          {
+            "step_number": 5,
+            "action": "Select",
+            "ui_location": "File Import form",
+            "field_name": "Field Mapping",
+            "value_type": "enum",
+            "validation_expected": "Selected field mapping displays",
+            "common_errors": "No field mapping selected"
+          },
+          {
+            "step_number": 6,
+            "action": "Click",
+            "ui_location": "File Import form",
+            "field_name": "Browse files",
+            "value_type": null,
+            "validation_expected": "File picker opens allowing selection of CSV file",
+            "common_errors": "Unsupported file type"
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "File picker dialog",
+            "field_name": "CSV file",
+            "value_type": null,
+            "validation_expected": "Chosen file name appears in the import form",
+            "common_errors": "Selecting a file with incorrect delimiter or invalid format"
+          },
+          {
+            "step_number": 8,
+            "action": "Wait",
+            "ui_location": "Import progress indicator",
+            "field_name": null,
+            "value_type": null,
+            "validation_expected": "Upload completes and a success message or import status appears",
+            "common_errors": "File size too large or format errors causing import failure"
+          }
+        ],
+        "system_behavior_after_completion": "Velocity processes the uploaded CSV and creates or updates contact records based on the selected mapping. A summary or log entry is generated for the import.",
+        "verification_procedure": [
+          "Check the import status or logs to confirm the number of records processed and any errors",
+          "Navigate to Contact Inventory and search for a sample of imported contacts to verify that fields were populated correctly"
+        ],
+        "rollback_procedure": "There is no automated rollback; to reverse the import, manually remove or update the imported contact records.",
+        "dependencies": [
+          "configure_field_mappings"
+        ]
+      },
+      {
+        "how_to_id": "create_communication_profile",
+        "metadata": {
+          "module": "Communication Profiles",
+          "feature_area": "Profiles",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 15,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Define dialing behavior, call flow order, curfews and channels so that campaigns and manual dialing sessions follow consistent communication rules.",
+        "preconditions": [
+          "User has permission to manage communication profiles",
+          "Required dialing scripts and skills exist"
+        ],
+        "navigation_path": "Home > Customer Engagement > Communication Profiles",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Customer Engagement",
+            "field_name": "Communication Profiles",
+            "value_type": null,
+            "validation_expected": "Communication Profiles page opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Communication Profiles page",
+            "field_name": "+ Profile",
+            "value_type": null,
+            "validation_expected": "New Communication Profile form opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Enter",
+            "ui_location": "New Communication Profile form",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Profile name field is populated",
+            "common_errors": "Leaving this field blank prevents saving"
+          },
+          {
+            "step_number": 4,
+            "action": "Adjust",
+            "ui_location": "Contact Flow section",
+            "field_name": "Retry vs Fresh slider",
+            "value_type": "number",
+            "validation_expected": "Slider position reflects the desired ratio of retry contacts to fresh contacts",
+            "common_errors": null
+          },
+          {
+            "step_number": 5,
+            "action": "Toggle",
+            "ui_location": "Contact Flow section",
+            "field_name": "Fresh call order",
+            "value_type": "boolean",
+            "validation_expected": "Selected option (First In - First Out or Last In - First Out) is highlighted for Fresh contacts",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Toggle",
+            "ui_location": "Contact Flow section",
+            "field_name": "Retry call order",
+            "value_type": "boolean",
+            "validation_expected": "Selected option (First In - First Out or Last In - First Out) is highlighted for Retry contacts",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "Dialing Ratio section",
+            "field_name": "Dialing Ratio option",
+            "value_type": "enum",
+            "validation_expected": "Chosen dialing ratio mode (Preview Dialing, Click To Call, Static, Threshold or Dynamic) is selected",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Enter",
+            "ui_location": "Curfew section",
+            "field_name": "Start Time",
+            "value_type": "text",
+            "validation_expected": "Start Time displays chosen hour and minute",
+            "common_errors": null
+          },
+          {
+            "step_number": 9,
+            "action": "Enter",
+            "ui_location": "Curfew section",
+            "field_name": "End Time",
+            "value_type": "text",
+            "validation_expected": "End Time displays chosen hour and minute",
+            "common_errors": "End time must be after start time"
+          },
+          {
+            "step_number": 10,
+            "action": "Enter",
+            "ui_location": "Curfew section",
+            "field_name": "Buffer",
+            "value_type": "number",
+            "validation_expected": "Buffer minutes are entered",
+            "common_errors": null
+          },
+          {
+            "step_number": 11,
+            "action": "Click",
+            "ui_location": "Call Windows section",
+            "field_name": "+ New Window",
+            "value_type": null,
+            "validation_expected": "Call Window modal opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 12,
+            "action": "Configure",
+            "ui_location": "Call Window modal",
+            "field_name": "Days/Times/Time Zone",
+            "value_type": null,
+            "validation_expected": "Selected days, begin and end times and time zone appear",
+            "common_errors": "Begin time after end time or no days selected"
+          },
+          {
+            "step_number": 13,
+            "action": "Click",
+            "ui_location": "Call Window modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Call Window modal closes and window appears in list",
+            "common_errors": null
+          },
+          {
+            "step_number": 14,
+            "action": "Click",
+            "ui_location": "Channels section",
+            "field_name": "+ New Channel",
+            "value_type": null,
+            "validation_expected": "Channel type selection appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 15,
+            "action": "Select",
+            "ui_location": "Channel selector",
+            "field_name": "Voice",
+            "value_type": "enum",
+            "validation_expected": "New Voice Channel modal opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 16,
+            "action": "Configure",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Retry Delay, Max Attempts, Cadence and Dialing Script",
+            "value_type": null,
+            "validation_expected": "All fields show the entered values and cadence list appears",
+            "common_errors": "Missing cadence entries or invalid numbers"
+          },
+          {
+            "step_number": 17,
+            "action": "Click",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Modal closes and channel appears in list",
+            "common_errors": null
+          },
+          {
+            "step_number": 18,
+            "action": "Click",
+            "ui_location": "Top\u2011right of the Communication Profile form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "The profile is saved and Communication Profiles list returns",
+            "common_errors": "Required fields missing or invalid settings"
+          }
+        ],
+        "system_behavior_after_completion": "The communication profile is added to the list and becomes available for selection when creating campaigns or manual dialing sessions. The defined call flow, curfew, call windows and channels control dialing behavior.",
+        "verification_procedure": [
+          "Return to Communication Profiles list and verify the profile appears with the correct name",
+          "Edit the profile to confirm that settings such as call windows and channels were saved"
+        ],
+        "rollback_procedure": "From the Communication Profiles list, locate the profile, click the delete icon and confirm deletion to remove it. Note that removing a profile will impact campaigns using it.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "set_call_windows",
+        "metadata": {
+          "module": "Communication Profiles",
+          "feature_area": "Call Windows",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Restrict dialing to specific days and times so that calls comply with legal or organizational calling hours.",
+        "preconditions": [
+          "A communication profile is being created or edited",
+          "User has permission to modify call windows"
+        ],
+        "navigation_path": "Home > Customer Engagement > Communication Profiles > [Profile] > Call Windows",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Communication Profile form",
+            "field_name": "Call Windows section",
+            "value_type": null,
+            "validation_expected": "Call Windows section is visible",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Call Windows section",
+            "field_name": "+ New Window",
+            "value_type": null,
+            "validation_expected": "A modal appears to configure a call window",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Select",
+            "ui_location": "Call Window modal",
+            "field_name": "Days of the week",
+            "value_type": "enum",
+            "validation_expected": "Selected days are highlighted",
+            "common_errors": "No days selected"
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "Call Window modal",
+            "field_name": "Begin Time",
+            "value_type": "text",
+            "validation_expected": "Begin time field shows entered time",
+            "common_errors": "Invalid time format"
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "Call Window modal",
+            "field_name": "End Time",
+            "value_type": "text",
+            "validation_expected": "End time field shows entered time",
+            "common_errors": "End time is before begin time"
+          },
+          {
+            "step_number": 6,
+            "action": "Select",
+            "ui_location": "Call Window modal",
+            "field_name": "Time Zone",
+            "value_type": "enum",
+            "validation_expected": "Selected time zone appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Toggle",
+            "ui_location": "Call Window modal",
+            "field_name": "Daylight Savings or Default",
+            "value_type": "boolean",
+            "validation_expected": "Checkbox or toggle is set appropriately",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Click",
+            "ui_location": "Call Window modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Modal closes and new call window appears in the list",
+            "common_errors": "Required fields not completed"
+          },
+          {
+            "step_number": 9,
+            "action": "Click",
+            "ui_location": "Communication Profile form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Communication Profile is saved with the new call window",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The new call window restricts dialing to the specified days and times within the profile.",
+        "verification_procedure": [
+          "Reopen the communication profile and verify the call window details are listed",
+          "During campaign execution, confirm calls only occur within the defined windows"
+        ],
+        "rollback_procedure": "Edit the communication profile, click the trash icon next to the call window, and confirm deletion to remove it.",
+        "dependencies": [
+          "create_communication_profile"
+        ]
+      },
+      {
+        "how_to_id": "set_retry_cadence_rules",
+        "metadata": {
+          "module": "Communication Profiles",
+          "feature_area": "Retry Cadence",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 7,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Configure how often and how many times the dialer should retry contacting a lead, ensuring efficient follow\u2011up without over\u2011dialing.",
+        "preconditions": [
+          "A communication profile is being created or edited",
+          "User has permission to manage channels"
+        ],
+        "navigation_path": "Home > Customer Engagement > Communication Profiles > [Profile] > Channels",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Communication Profile form",
+            "field_name": "Channels section",
+            "value_type": null,
+            "validation_expected": "Channels section is visible",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Channels section",
+            "field_name": "+ New Channel",
+            "value_type": null,
+            "validation_expected": "Channel type options appear",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Select",
+            "ui_location": "Channel type selector",
+            "field_name": "Voice",
+            "value_type": "enum",
+            "validation_expected": "New Voice Channel modal appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Retry Delay Days",
+            "value_type": "number",
+            "validation_expected": "Days field displays entered number",
+            "common_errors": "Negative numbers or non\u2011numeric characters"
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Retry Delay Hours",
+            "value_type": "number",
+            "validation_expected": "Hours field displays entered number",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Enter",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Retry Delay Minutes",
+            "value_type": "number",
+            "validation_expected": "Minutes field displays entered number",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Enter",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Max Attempts",
+            "value_type": "number",
+            "validation_expected": "Max Attempts field shows entered value",
+            "common_errors": "Zero or excessively high attempts"
+          },
+          {
+            "step_number": 8,
+            "action": "Select",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Phone Type",
+            "value_type": "enum",
+            "validation_expected": "Selected phone type appears (e.g., Mobile, Home)",
+            "common_errors": null
+          },
+          {
+            "step_number": 9,
+            "action": "Enter",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Delay",
+            "value_type": "number",
+            "validation_expected": "Delay field displays entered minutes for the cadence entry",
+            "common_errors": null
+          },
+          {
+            "step_number": 10,
+            "action": "Click",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "+ (plus) icon",
+            "value_type": null,
+            "validation_expected": "The cadence entry is added to the list",
+            "common_errors": "Missing phone type or delay before clicking plus"
+          },
+          {
+            "step_number": 11,
+            "action": "Select",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Dialing Script",
+            "value_type": "enum",
+            "validation_expected": "Selected dialing script appears in the dropdown",
+            "common_errors": null
+          },
+          {
+            "step_number": 12,
+            "action": "Click",
+            "ui_location": "New Voice Channel modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Modal closes and the new channel appears in the Channels list",
+            "common_errors": "Incomplete cadence configuration"
+          },
+          {
+            "step_number": 13,
+            "action": "Click",
+            "ui_location": "Communication Profile form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Communication profile saves with the new retry cadence rules",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The voice channel with specified retry delay, attempts and cadence controls how the dialer retries contact attempts during campaigns.",
+        "verification_procedure": [
+          "Edit the communication profile and check the Voice channel configuration to ensure the retry delay, attempts and cadence entries match the intended values",
+          "Monitor campaign logs to confirm calls follow the configured retry timing"
+        ],
+        "rollback_procedure": "Edit the communication profile, open the voice channel and adjust or delete the cadence entries. Alternatively, delete the voice channel entirely and save the profile.",
+        "dependencies": [
+          "create_communication_profile"
+        ]
+      },
+      {
+        "how_to_id": "set_lifo_vs_fifo",
+        "metadata": {
+          "module": "Communication Profiles",
+          "feature_area": "Call Order",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 2,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Choose whether fresh and retry contacts are dialed in the order they arrive (FIFO) or in reverse order (LIFO), affecting the sequence of calls.",
+        "preconditions": [
+          "A communication profile is being created or edited"
+        ],
+        "navigation_path": "Home > Customer Engagement > Communication Profiles > [Profile] > Contact Flow",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Communication Profile form",
+            "field_name": "Contact Flow section",
+            "value_type": null,
+            "validation_expected": "Contact Flow slider and order toggles are visible",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Toggle",
+            "ui_location": "Contact Flow section",
+            "field_name": "Fresh call order",
+            "value_type": "boolean",
+            "validation_expected": "Choice between First In - First Out or Last In - First Out is selected for fresh contacts",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Toggle",
+            "ui_location": "Contact Flow section",
+            "field_name": "Retry call order",
+            "value_type": "boolean",
+            "validation_expected": "Choice between First In - First Out or Last In - First Out is selected for retry contacts",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Communication Profile form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Communication profile saves with the selected ordering settings",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The dialer will process fresh and retry contacts according to the selected call order (FIFO or LIFO).",
+        "verification_procedure": [
+          "Reopen the communication profile and confirm the toggles show the correct order for fresh and retry contacts"
+        ],
+        "rollback_procedure": "Revisit the Contact Flow section, toggle the order settings back to their previous state, and save the profile.",
+        "dependencies": [
+          "create_communication_profile"
+        ]
+      },
+      {
+        "how_to_id": "create_campaign",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Campaign Management",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 10,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Launch a new outreach campaign by selecting a communication profile, skill and one or more segments for dialing or messaging.",
+        "preconditions": [
+          "At least one communication profile exists",
+          "At least one segment exists",
+          "User has permission to create campaigns",
+          "Required contact center skills are configured"
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Customer Engagement",
+            "field_name": "Campaigns",
+            "value_type": null,
+            "validation_expected": "Campaigns page opens with list of existing campaigns",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Campaigns page",
+            "field_name": "+ Campaign",
+            "value_type": null,
+            "validation_expected": "New Campaign modal opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Enter",
+            "ui_location": "New Campaign modal",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Campaign name field shows the entered text",
+            "common_errors": "Name is required"
+          },
+          {
+            "step_number": 4,
+            "action": "Select",
+            "ui_location": "New Campaign modal",
+            "field_name": "Profile",
+            "value_type": "enum",
+            "validation_expected": "Selected communication profile appears",
+            "common_errors": "No profile selected"
+          },
+          {
+            "step_number": 5,
+            "action": "Toggle",
+            "ui_location": "New Campaign modal",
+            "field_name": "Static Campaign",
+            "value_type": "boolean",
+            "validation_expected": "Static Campaign toggle is set according to campaign type",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Toggle",
+            "ui_location": "New Campaign modal",
+            "field_name": "Approver Mode",
+            "value_type": "boolean",
+            "validation_expected": "Approver Mode toggle is set according to requirement",
+            "common_errors": null
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "New Campaign modal",
+            "field_name": "Skill",
+            "value_type": "enum",
+            "validation_expected": "Selected skill appears in the dropdown",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Search",
+            "ui_location": "Segments search field",
+            "field_name": "Segment",
+            "value_type": "text",
+            "validation_expected": "Desired segment name appears in search results",
+            "common_errors": "Segment not found"
+          },
+          {
+            "step_number": 9,
+            "action": "Click",
+            "ui_location": "Segments search result row",
+            "field_name": "Plus icon",
+            "value_type": null,
+            "validation_expected": "Segment row is added to the segments table",
+            "common_errors": null
+          },
+          {
+            "step_number": 10,
+            "action": "Configure",
+            "ui_location": "Segments table row",
+            "field_name": "Ratio, Sort Field, Sort Direction",
+            "value_type": null,
+            "validation_expected": "Ratio and sorting fields display entered values",
+            "common_errors": "Leaving ratio blank or invalid sorting selection"
+          },
+          {
+            "step_number": 11,
+            "action": "Click",
+            "ui_location": "New Campaign modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Modal closes and new campaign appears in the list",
+            "common_errors": "Missing required fields"
+          }
+        ],
+        "system_behavior_after_completion": "A new campaign is created with the selected profile, skill and segments. The system begins placing calls or messages according to the campaign schedule and settings.",
+        "verification_procedure": [
+          "Return to Campaigns list and verify that the campaign appears with the correct name and status",
+          "Open the campaign details to confirm segments, ratios and sorting settings are correct"
+        ],
+        "rollback_procedure": "From the Campaigns list, select the campaign, click the delete or deactivate icon and confirm to remove or pause the campaign.",
+        "dependencies": [
+          "create_communication_profile",
+          "create_segment"
+        ]
+      },
+      {
+        "how_to_id": "assign_segments_to_campaign",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Segment Assignment",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 3,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Select one or more segments to include in a campaign, allowing targeted contacts to be dialed or messaged.",
+        "preconditions": [
+          "At least one segment exists",
+          "A campaign is being created or edited"
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns > [New or existing campaign]",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Campaign modal",
+            "field_name": "Segments search field",
+            "value_type": null,
+            "validation_expected": "Segments search field is visible",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Search",
+            "ui_location": "Segments search field",
+            "field_name": "Segment name",
+            "value_type": "text",
+            "validation_expected": "Matching segments appear in search results",
+            "common_errors": "Misspelled segment names"
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Segments search result",
+            "field_name": "Plus icon",
+            "value_type": null,
+            "validation_expected": "Segment is added to the segments table",
+            "common_errors": "Clicking outside the plus icon"
+          },
+          {
+            "step_number": 4,
+            "action": "Repeat",
+            "ui_location": "Segments search field",
+            "field_name": null,
+            "value_type": null,
+            "validation_expected": "Additional segments can be searched and added to the table",
+            "common_errors": null
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Campaign modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Campaign saves with selected segments",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The selected segments are associated with the campaign and will be used to pull contacts when the campaign runs.",
+        "verification_procedure": [
+          "Reopen the campaign and confirm that the selected segments appear in the segments table"
+        ],
+        "rollback_procedure": "Edit the campaign, click the trash icon next to a segment in the table, and save to remove that segment from the campaign.",
+        "dependencies": [
+          "create_campaign"
+        ]
+      },
+      {
+        "how_to_id": "configure_segment_ratios",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Segment Ratios",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 2,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Adjust the weight of each segment in a campaign to control how contacts are drawn from multiple segments.",
+        "preconditions": [
+          "A campaign with at least one segment is being created or edited"
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns > [Campaign] > Segments table",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Segments table",
+            "field_name": "Ratio column",
+            "value_type": null,
+            "validation_expected": "Each segment row has a ratio input field",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Enter",
+            "ui_location": "Segments table row",
+            "field_name": "Ratio",
+            "value_type": "number",
+            "validation_expected": "Entered numeric ratio appears in the field",
+            "common_errors": "Non\u2011numeric or zero ratio"
+          },
+          {
+            "step_number": 3,
+            "action": "Repeat",
+            "ui_location": "Segments table row",
+            "field_name": null,
+            "value_type": null,
+            "validation_expected": "All segments have their desired ratios set",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Campaign modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Campaign saves with the new ratios",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The dialer allocates calls based on the defined ratios across segments when the campaign runs.",
+        "verification_procedure": [
+          "Reopen the campaign and confirm the ratio fields retain the correct numbers"
+        ],
+        "rollback_procedure": "Edit the campaign and adjust the ratio values as needed, then save.",
+        "dependencies": [
+          "assign_segments_to_campaign"
+        ]
+      },
+      {
+        "how_to_id": "configure_segment_sorting",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Segment Sorting",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 2,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Determine the order in which contacts are dialed within a segment by specifying the sorting field and direction.",
+        "preconditions": [
+          "At least one segment is added to the campaign",
+          "Campaign is being created or edited"
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns > [Campaign] > Segments table",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "Segments table",
+            "field_name": "Sort Field column",
+            "value_type": null,
+            "validation_expected": "Each segment row has a Sort Field dropdown",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Select",
+            "ui_location": "Segments table row",
+            "field_name": "Sort Field",
+            "value_type": "enum",
+            "validation_expected": "Selected option (None, Balance, DPD) appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Select",
+            "ui_location": "Segments table row",
+            "field_name": "Sort Direction",
+            "value_type": "enum",
+            "validation_expected": "Selected option (Ascending or Descending) appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Campaign modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Campaign saves with the selected sort settings",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "When the campaign runs, contacts are pulled from the segment in the specified order based on the sort field and direction.",
+        "verification_procedure": [
+          "Reopen the campaign and confirm the Sort Field and Sort Direction values for each segment"
+        ],
+        "rollback_procedure": "Edit the campaign, change the sort field or direction back to the desired setting, and save.",
+        "dependencies": [
+          "assign_segments_to_campaign"
+        ]
+      },
+      {
+        "how_to_id": "map_dialer_skill",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Skill Mapping",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 2,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Associate a contact center skill with a campaign to route calls to agents with the appropriate skill set.",
+        "preconditions": [
+          "Contact center skills have been configured",
+          "A campaign is being created or edited"
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns > [Campaign]",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Locate",
+            "ui_location": "New or edit Campaign modal",
+            "field_name": "Skill dropdown",
+            "value_type": null,
+            "validation_expected": "Skill dropdown is visible",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Select",
+            "ui_location": "Skill dropdown",
+            "field_name": "Skill",
+            "value_type": "enum",
+            "validation_expected": "Chosen skill appears in the dropdown",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Campaign modal",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Campaign saves with the selected skill",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The campaign uses the selected skill when routing calls, ensuring agents with that skill handle calls from the campaign.",
+        "verification_procedure": [
+          "Reopen the campaign to confirm the skill selection"
+        ],
+        "rollback_procedure": "Edit the campaign and choose a different skill from the dropdown, then save.",
+        "dependencies": [
+          "create_campaign"
+        ]
+      },
+      {
+        "how_to_id": "create_message_template",
+        "metadata": {
+          "module": "Digital Channels",
+          "feature_area": "Message Templates",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 7,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Design reusable content for emails or SMS messages to ensure consistent messaging across campaigns.",
+        "preconditions": [
+          "User has permission to manage message templates"
+        ],
+        "navigation_path": "Home > Customer Engagement > Digital Channels > Message Templates",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Customer Engagement",
+            "field_name": "Digital Channels",
+            "value_type": null,
+            "validation_expected": "Digital Channels menu expands",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Digital Channels menu",
+            "field_name": "Message Templates",
+            "value_type": null,
+            "validation_expected": "Message Templates page displays existing templates",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Message Templates page",
+            "field_name": "Add Template",
+            "value_type": null,
+            "validation_expected": "New Template form opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New Template form",
+            "field_name": "Template Name",
+            "value_type": "text",
+            "validation_expected": "Template Name field shows the entered text",
+            "common_errors": "Name is required"
+          },
+          {
+            "step_number": 5,
+            "action": "Select",
+            "ui_location": "New Template form",
+            "field_name": "Message Type",
+            "value_type": "enum",
+            "validation_expected": "Selected message type (Plain Text, HTML, Raw HTML) appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Enter",
+            "ui_location": "New Template form",
+            "field_name": "Content",
+            "value_type": "text",
+            "validation_expected": "Message body is entered into the editor",
+            "common_errors": "Leaving content blank"
+          },
+          {
+            "step_number": 7,
+            "action": "Click",
+            "ui_location": "New Template form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Template is saved and appears in the Message Templates list",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "The template becomes available for selection in digital profiles and campaigns for sending emails or SMS messages.",
+        "verification_procedure": [
+          "Return to Message Templates list and verify that the new template appears",
+          "Open the template to confirm the name, type and content are correct"
+        ],
+        "rollback_procedure": "From the Message Templates list, click the delete icon next to the template and confirm deletion to remove it.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "enable_sms_template",
+        "metadata": {
+          "module": "Digital Channels",
+          "feature_area": "Digital Profiles",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 10,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Activate an SMS channel within a digital profile so messages can be sent using a selected provider and template.",
+        "preconditions": [
+          "An SMS provider is configured",
+          "A message template exists for SMS",
+          "User has permission to manage digital profiles"
+        ],
+        "navigation_path": "Home > Customer Engagement > Digital Channels > Digital Profiles",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation under Customer Engagement",
+            "field_name": "Digital Channels",
+            "value_type": null,
+            "validation_expected": "Digital Channels menu expands",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Digital Channels menu",
+            "field_name": "Digital Profiles",
+            "value_type": null,
+            "validation_expected": "Digital Profiles page shows existing profiles",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Digital Profiles page",
+            "field_name": "+ Profile",
+            "value_type": null,
+            "validation_expected": "New Digital Profile form opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New Digital Profile form",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Name field shows entered text",
+            "common_errors": "Name is required"
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "New Digital Profile form",
+            "field_name": "Vendor Id",
+            "value_type": "text",
+            "validation_expected": "Vendor Id field is populated",
+            "common_errors": null
+          },
+          {
+            "step_number": 6,
+            "action": "Enter",
+            "ui_location": "New Digital Profile form",
+            "field_name": "API Key",
+            "value_type": "text",
+            "validation_expected": "API Key field is populated",
+            "common_errors": "Invalid API key format"
+          },
+          {
+            "step_number": 7,
+            "action": "Enter",
+            "ui_location": "New Digital Profile form",
+            "field_name": "Expiration Time",
+            "value_type": "number",
+            "validation_expected": "Expiration time field shows entered value",
+            "common_errors": null
+          },
+          {
+            "step_number": 8,
+            "action": "Select",
+            "ui_location": "New Digital Profile form",
+            "field_name": "Messaging Type",
+            "value_type": "enum",
+            "validation_expected": "Selected messaging type appears (e.g., Messaging Only)",
+            "common_errors": null
+          },
+          {
+            "step_number": 9,
+            "action": "Toggle",
+            "ui_location": "Messaging Options section",
+            "field_name": "SMS",
+            "value_type": "boolean",
+            "validation_expected": "SMS toggle is enabled and SMS options appear",
+            "common_errors": null
+          },
+          {
+            "step_number": 10,
+            "action": "Select",
+            "ui_location": "SMS options",
+            "field_name": "SMS Provider",
+            "value_type": "enum",
+            "validation_expected": "Selected provider appears",
+            "common_errors": "No provider configured"
+          },
+          {
+            "step_number": 11,
+            "action": "Select",
+            "ui_location": "SMS options",
+            "field_name": "Message Template",
+            "value_type": "enum",
+            "validation_expected": "Selected SMS template appears",
+            "common_errors": "Template list is empty"
+          },
+          {
+            "step_number": 12,
+            "action": "Click",
+            "ui_location": "New Digital Profile form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Digital profile saves and appears in the list",
+            "common_errors": "Missing required fields or provider configuration"
+          }
+        ],
+        "system_behavior_after_completion": "The digital profile is saved with an active SMS channel using the selected provider and message template. It can be assigned to campaigns to send SMS messages.",
+        "verification_procedure": [
+          "Return to Digital Profiles list and confirm the new profile is present",
+          "Edit the profile to verify SMS provider and template are correctly set"
+        ],
+        "rollback_procedure": "Edit the digital profile and disable the SMS toggle or delete the profile entirely.",
+        "dependencies": [
+          "create_message_template"
+        ]
+      },
+      {
+        "how_to_id": "configure_dnc_sources",
+        "metadata": {
+          "module": "Suppression",
+          "feature_area": "DNC Lists",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Admin",
+            "Compliance Manager"
+          ]
+        },
+        "business_objective": "Create a Do Not Call list so contacts on the list are automatically suppressed from outbound campaigns.",
+        "preconditions": [
+          "User has permission to manage suppression lists"
+        ],
+        "navigation_path": "Home > Suppression > DNC",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Suppression",
+            "value_type": null,
+            "validation_expected": "Suppression menu expands showing DNC",
+            "common_errors": null
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Suppression menu",
+            "field_name": "DNC",
+            "value_type": null,
+            "validation_expected": "DNC lists page opens",
+            "common_errors": null
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "DNC lists page",
+            "field_name": "+ DNC List",
+            "value_type": null,
+            "validation_expected": "New DNC List modal appears",
+            "common_errors": null
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New DNC List modal",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "DNC list name field displays entered text",
+            "common_errors": "Name is required"
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "New DNC List modal",
+            "field_name": "Create",
+            "value_type": null,
+            "validation_expected": "Modal closes and the new DNC list appears in the table",
+            "common_errors": null
+          }
+        ],
+        "system_behavior_after_completion": "A new DNC list is created. Contacts added to this list will be excluded from calling when associated with suppression profiles.",
+        "verification_procedure": [
+          "Return to the DNC list page and verify the new list appears",
+          "Open the list to confirm it is empty and ready for uploads"
+        ],
+        "rollback_procedure": "On the DNC list page, click the trash icon next to the list and confirm deletion to remove it.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "create_digital_profile",
+        "metadata": {
+          "module": "Digital Channels",
+          "feature_area": "Digital Profiles",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 10,
+          "requires_permissions": [
+            "Admin"
+          ]
+        },
+        "business_objective": "Establish a digital profile that stores vendor credentials and messaging templates, enabling Velocity to send messages through external SMS or email providers. This ensures compliant and consistent messaging across digital channels.",
+        "preconditions": [
+          "You must have Admin access.",
+          "At least one message template exists (SMS or email).",
+          "Vendor credentials (API key, vendor ID) are available."
+        ],
+        "navigation_path": "Home > Customer Engagement > Digital Channels > Digital Profiles",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Digital Channels",
+            "value_type": null,
+            "validation_expected": "Digital Channels menu expands.",
+            "common_errors": "Menu does not expand if navigation is collapsed."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Left navigation under Digital Channels",
+            "field_name": "Digital Profiles",
+            "value_type": null,
+            "validation_expected": "Digital Profiles page loads displaying existing profiles.",
+            "common_errors": "Page fails to load due to insufficient permissions."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Top-right of Digital Profiles page",
+            "field_name": "+ Profile",
+            "value_type": null,
+            "validation_expected": "New Digital Profile form appears.",
+            "common_errors": "Button disabled if no permission."
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New Digital Profile form \u2013 Details section",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Name field shows typed text.",
+            "common_errors": "Name left blank."
+          },
+          {
+            "step_number": 5,
+            "action": "Enter",
+            "ui_location": "Details section",
+            "field_name": "Vendor Id",
+            "value_type": "text",
+            "validation_expected": "Vendor ID field is populated.",
+            "common_errors": "Invalid vendor ID format."
+          },
+          {
+            "step_number": 6,
+            "action": "Enter",
+            "ui_location": "Details section",
+            "field_name": "Api Key",
+            "value_type": "text",
+            "validation_expected": "API key accepted.",
+            "common_errors": "Missing or expired API key."
+          },
+          {
+            "step_number": 7,
+            "action": "Enter",
+            "ui_location": "Details section",
+            "field_name": "Expiration Time",
+            "value_type": "text",
+            "validation_expected": "Expiration time recorded.",
+            "common_errors": "Invalid date/time format."
+          },
+          {
+            "step_number": 8,
+            "action": "Select",
+            "ui_location": "Details section",
+            "field_name": "Messaging Type",
+            "value_type": "enum",
+            "validation_expected": "Messaging Type dropdown shows selected value.",
+            "common_errors": "Type not selected."
+          },
+          {
+            "step_number": 9,
+            "action": "Toggle",
+            "ui_location": "Messaging Options section",
+            "field_name": "SMS",
+            "value_type": "boolean",
+            "validation_expected": "SMS options panel expands.",
+            "common_errors": "Toggle disabled if provider not configured."
+          },
+          {
+            "step_number": 10,
+            "action": "Select",
+            "ui_location": "Messaging Options panel",
+            "field_name": "SMS Provider",
+            "value_type": "enum",
+            "validation_expected": "Provider dropdown displays selected provider.",
+            "common_errors": "Provider list empty."
+          },
+          {
+            "step_number": 11,
+            "action": "Select",
+            "ui_location": "Messaging Options panel",
+            "field_name": "Message Template",
+            "value_type": "enum",
+            "validation_expected": "Message template selected.",
+            "common_errors": "Template not found."
+          },
+          {
+            "step_number": 12,
+            "action": "Click",
+            "ui_location": "Top-right of form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Digital profile is saved and appears in the profiles list.",
+            "common_errors": "Validation errors displayed if required fields are missing."
+          }
+        ],
+        "system_behavior_after_completion": "The digital profile becomes available for selection in communication profiles and digital channels, allowing Velocity to send messages via the configured provider using the chosen templates.",
+        "verification_procedure": [
+          "Return to the Digital Profiles list and verify the new profile appears with the correct name.",
+          "Edit the profile to confirm that provider and template settings are saved.",
+          "Attempt to send a test message using this profile to ensure delivery succeeds."
+        ],
+        "rollback_procedure": "To delete the digital profile, navigate back to Digital Profiles, locate the profile, click the trash/delete icon, and confirm deletion. Once deleted, the profile can no longer be used in messaging.",
+        "dependencies": [
+          "create_message_template"
+        ]
+      },
+      {
+        "how_to_id": "create_contact_field_suppression_list",
+        "metadata": {
+          "module": "Suppression",
+          "feature_area": "Contact Data Suppression",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Admin"
+          ]
+        },
+        "business_objective": "Establish a suppression list tied to a specific contact field so that records with matching values are automatically excluded from dialing or messaging.",
+        "preconditions": [
+          "You must have Admin access.",
+          "At least one custom field exists for contacts.",
+          "A list of values to suppress has been prepared."
+        ],
+        "navigation_path": "Home > Suppression > Contact Data Suppression",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Suppression",
+            "value_type": null,
+            "validation_expected": "Suppression menu expands.",
+            "common_errors": "Navigation collapsed or insufficient permissions."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Suppression submenu",
+            "field_name": "Contact Data Suppression",
+            "value_type": null,
+            "validation_expected": "Contact Field Suppression Lists page opens.",
+            "common_errors": "Page fails to load."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Top-right of page",
+            "field_name": "+ List",
+            "value_type": null,
+            "validation_expected": "New suppression list modal appears with fields for List Name and Contact Field.",
+            "common_errors": "Button disabled due to missing permissions."
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New suppression list modal",
+            "field_name": "List Name",
+            "value_type": "text",
+            "validation_expected": "List Name field contains typed text.",
+            "common_errors": "List Name left blank or duplicates existing list."
+          },
+          {
+            "step_number": 5,
+            "action": "Select",
+            "ui_location": "New suppression list modal",
+            "field_name": "Contact Field",
+            "value_type": "enum",
+            "validation_expected": "Contact Field dropdown shows selected field.",
+            "common_errors": "No fields available or selection not made."
+          },
+          {
+            "step_number": 6,
+            "action": "Click",
+            "ui_location": "Modal footer",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Suppression list is created and appears in the suppression lists table.",
+            "common_errors": "Validation error if required fields are missing."
+          }
+        ],
+        "system_behavior_after_completion": "The suppression list is saved and can be referenced in suppression profiles. Contacts whose selected field value matches any entry in the list will be automatically suppressed from dialing and messaging.",
+        "verification_procedure": [
+          "Return to the Contact Field Suppression Lists page and confirm the new list appears with the correct name and field.",
+          "Edit the list to ensure the correct field is associated.",
+          "Apply the list in a suppression profile and validate that affected contacts are suppressed."
+        ],
+        "rollback_procedure": "To remove the suppression list, click the delete icon next to the list on the Contact Field Suppression Lists page and confirm. Deleting the list removes its suppression effect.",
+        "dependencies": [
+          "create_custom_field"
+        ]
+      },
+      {
+        "how_to_id": "create_suppression_profile",
+        "metadata": {
+          "module": "Suppression",
+          "feature_area": "Suppression Profiles",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 8,
+          "requires_permissions": [
+            "Admin"
+          ]
+        },
+        "business_objective": "Define a suppression profile that combines various suppression lists and field checks to control which contacts are blocked from campaigns and dialing.",
+        "preconditions": [
+          "Admin access is required.",
+          "At least one segment and one suppression list or field are available to configure checks."
+        ],
+        "navigation_path": "Home > Suppression > Suppression Profiles",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Suppression",
+            "value_type": null,
+            "validation_expected": "Suppression menu expands.",
+            "common_errors": "Insufficient permissions."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Suppression submenu",
+            "field_name": "Suppression Profiles",
+            "value_type": null,
+            "validation_expected": "Suppression Profiles page opens displaying existing profiles.",
+            "common_errors": "Page fails to load."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Top-right of page",
+            "field_name": "+ Profile",
+            "value_type": null,
+            "validation_expected": "New Suppression Profile form appears.",
+            "common_errors": "Button disabled due to missing permissions."
+          },
+          {
+            "step_number": 4,
+            "action": "Enter",
+            "ui_location": "New Suppression Profile form",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Profile name field contains typed text.",
+            "common_errors": "Name left blank or duplicates an existing profile."
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Suppression Checks section",
+            "field_name": "+ Add Check",
+            "value_type": null,
+            "validation_expected": "A new check row appears with dropdowns for type and value.",
+            "common_errors": "No check row appears."
+          },
+          {
+            "step_number": 6,
+            "action": "Select",
+            "ui_location": "New check row",
+            "field_name": "Check Type",
+            "value_type": "enum",
+            "validation_expected": "Check type (such as suppression list or contact field) is selected.",
+            "common_errors": "Type not selected."
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "New check row",
+            "field_name": "Value",
+            "value_type": "enum",
+            "validation_expected": "Specific suppression list or field is chosen.",
+            "common_errors": "No value selected."
+          },
+          {
+            "step_number": 8,
+            "action": "Enter",
+            "ui_location": "New check row",
+            "field_name": "Days To Check",
+            "value_type": "number",
+            "validation_expected": "Days value entered (if applicable).",
+            "common_errors": "Non-numeric input."
+          },
+          {
+            "step_number": 9,
+            "action": "Select",
+            "ui_location": "Suppression Tester section",
+            "field_name": "Segment",
+            "value_type": "enum",
+            "validation_expected": "Segment dropdown shows selected segment.",
+            "common_errors": "Segment not selected."
+          },
+          {
+            "step_number": 10,
+            "action": "Select",
+            "ui_location": "Suppression Tester section",
+            "field_name": "Cadence Field",
+            "value_type": "enum",
+            "validation_expected": "Cadence field selected (optional).",
+            "common_errors": "Not applicable if not needed."
+          },
+          {
+            "step_number": 11,
+            "action": "Click",
+            "ui_location": "Top-right of form",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Suppression profile saved and appears in the profiles list.",
+            "common_errors": "Validation errors due to missing required fields."
+          }
+        ],
+        "system_behavior_after_completion": "Velocity saves the suppression profile and applies it to campaigns or communication profiles when selected. Contacts matching the checks are suppressed from communication.",
+        "verification_procedure": [
+          "Return to the Suppression Profiles list and confirm the new profile appears with the correct name.",
+          "Apply the profile to a campaign and verify suppressed contacts are excluded.",
+          "Edit the profile to ensure suppression checks are correctly configured."
+        ],
+        "rollback_procedure": "To remove the suppression profile, locate it in the profiles list, click the delete icon, and confirm. Deletion removes its suppression effect from campaigns.",
+        "dependencies": [
+          "create_contact_field_suppression_list"
+        ]
+      },
+      {
+        "how_to_id": "configure_disposition_handling",
+        "metadata": {
+          "module": "Contact Center",
+          "feature_area": "Disposition Mappings",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 7,
+          "requires_permissions": [
+            "Admin",
+            "Contact Center Manager"
+          ]
+        },
+        "business_objective": "Map telephony dispositions recorded by agents to standardized outcomes used in reporting and automation, ensuring consistent interpretation of call results.",
+        "preconditions": [
+          "Admin or Contact Center Manager access.",
+          "At least one call center skill exists in the system.",
+          "Dispositions are defined in the telephony provider."
+        ],
+        "navigation_path": "Home > Contact Center > Connection > Disposition Mappings",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Contact Center",
+            "value_type": null,
+            "validation_expected": "Contact Center menu opens.",
+            "common_errors": "Menu collapsed or lacking permission."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Contact Center submenu",
+            "field_name": "Connection",
+            "value_type": null,
+            "validation_expected": "Connection menu expands showing Disposition Mappings.",
+            "common_errors": "Connection menu not visible."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Connection submenu",
+            "field_name": "Disposition Mappings",
+            "value_type": null,
+            "validation_expected": "Disposition Mappings page loads with skill dropdown and Add Disposition button\u3010870658865089711\u2020screenshot\u3011.",
+            "common_errors": "Page fails to load."
+          },
+          {
+            "step_number": 4,
+            "action": "Select",
+            "ui_location": "Top-left of page",
+            "field_name": "Skill",
+            "value_type": "enum",
+            "validation_expected": "The selected skill is displayed and any existing mappings appear\u3010870658865089711\u2020screenshot\u3011.",
+            "common_errors": "Skill not selected."
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Top-right of mapping list",
+            "field_name": "Add Disposition",
+            "value_type": null,
+            "validation_expected": "Add Disposition modal opens for mapping\u3010495659821951028\u2020screenshot\u3011.",
+            "common_errors": "Button disabled if no skill selected."
+          },
+          {
+            "step_number": 6,
+            "action": "Select",
+            "ui_location": "Add Disposition modal",
+            "field_name": "Disposition",
+            "value_type": "enum",
+            "validation_expected": "Disposition dropdown shows chosen disposition\u3010495659821951028\u2020screenshot\u3011.",
+            "common_errors": "Disposition not selected."
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "Add Disposition modal",
+            "field_name": "Outcome",
+            "value_type": "enum",
+            "validation_expected": "Outcome dropdown displays selected outcome\u3010495659821951028\u2020screenshot\u3011.",
+            "common_errors": "Outcome not selected."
+          },
+          {
+            "step_number": 8,
+            "action": "Enter",
+            "ui_location": "Add Disposition modal",
+            "field_name": "Notes",
+            "value_type": "text",
+            "validation_expected": "Notes field populated (optional).",
+            "common_errors": "Notes exceed character limit."
+          },
+          {
+            "step_number": 9,
+            "action": "Click",
+            "ui_location": "Modal footer",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "Mapping is saved and appears in the disposition mappings list for the selected skill.",
+            "common_errors": "Validation error if fields missing."
+          }
+        ],
+        "system_behavior_after_completion": "When agents select the disposition during a call, the mapped outcome is stored in Velocity. Reports and automations use the outcome rather than the raw disposition.",
+        "verification_procedure": [
+          "View the Disposition Mappings list for the selected skill to confirm the new mapping row appears.",
+          "Perform a test call, select the mapped disposition, and confirm that the outcome recorded in reports matches the mapping.",
+          "Edit or delete the mapping to verify changes propagate correctly."
+        ],
+        "rollback_procedure": "To remove a disposition mapping, click the delete icon on the mapping row in the Disposition Mappings list and confirm. Deletion removes the mapping but does not delete the underlying disposition.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "clone_campaign",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Campaign Management",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 3,
+          "requires_permissions": [
+            "Admin",
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Quickly duplicate an existing campaign to reuse its profiles, segments and settings, thereby saving configuration time when creating similar campaigns.",
+        "preconditions": [
+          "You must have permission to create campaigns.",
+          "At least one existing campaign is available to clone."
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Campaigns",
+            "value_type": null,
+            "validation_expected": "Campaigns page displays the list of campaigns.",
+            "common_errors": "Campaigns menu not accessible."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Campaign list row",
+            "field_name": "Clone icon",
+            "value_type": null,
+            "validation_expected": "New Campaign modal opens pre-filled with information from the selected campaign\u3010451684397199696\u2020screenshot\u3011.",
+            "common_errors": "Clone icon disabled for campaigns created by others."
+          },
+          {
+            "step_number": 3,
+            "action": "Enter",
+            "ui_location": "New Campaign modal",
+            "field_name": "Name",
+            "value_type": "text",
+            "validation_expected": "Unique campaign name entered.",
+            "common_errors": "Duplicate or invalid name."
+          },
+          {
+            "step_number": 4,
+            "action": "Review",
+            "ui_location": "New Campaign modal",
+            "field_name": "Profile, Static Campaign toggle, Approver Mode toggle, Skill and segment ratios",
+            "value_type": null,
+            "validation_expected": "Settings are correct and updated if needed.",
+            "common_errors": "Forgetting to update necessary fields."
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Modal footer",
+            "field_name": "Save",
+            "value_type": null,
+            "validation_expected": "New campaign is created and added to the campaigns list.",
+            "common_errors": "Validation errors due to missing required fields."
+          }
+        ],
+        "system_behavior_after_completion": "Velocity creates an entirely new campaign that inherits the profile, skill and segment configuration of the original. The new campaign is independent and can be started or modified separately.",
+        "verification_procedure": [
+          "Look for the new campaign in the Campaigns list and verify that it appears with the correct name.",
+          "Open the campaign to confirm that segments, ratios and settings are consistent with the original.",
+          "Start the cloned campaign and ensure it behaves as expected."
+        ],
+        "rollback_procedure": "If the cloned campaign is not needed, delete it by clicking the trash icon in the campaigns list and confirming deletion.",
+        "dependencies": [
+          "create_campaign"
+        ]
+      },
+      {
+        "how_to_id": "pause_campaign",
+        "metadata": {
+          "module": "Campaigns",
+          "feature_area": "Campaign Management",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 2,
+          "requires_permissions": [
+            "Campaign Manager"
+          ]
+        },
+        "business_objective": "Temporarily halt a running campaign to pause outbound dialing or messaging without deleting or resetting its configuration.",
+        "preconditions": [
+          "User has permission to manage campaigns.",
+          "The campaign must be in a running state."
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Campaigns",
+            "value_type": null,
+            "validation_expected": "Campaigns list is displayed.",
+            "common_errors": "No access to campaigns."
+          },
+          {
+            "step_number": 2,
+            "action": "Identify",
+            "ui_location": "Campaigns list",
+            "field_name": "Running campaign",
+            "value_type": null,
+            "validation_expected": "Row shows status as running or active.",
+            "common_errors": "Campaign not running."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Action icons column",
+            "field_name": "Pause/Stop icon",
+            "value_type": null,
+            "validation_expected": "Campaign status changes to Paused and the play/resume icon appears.",
+            "common_errors": "Icon disabled or error message due to insufficient permissions."
+          }
+        ],
+        "system_behavior_after_completion": "Velocity suspends all dialing and messaging activities for the campaign. The campaign remains configured but does not place calls or send messages until resumed.",
+        "verification_procedure": [
+          "Check that the campaign's status in the list shows Paused or Inactive.",
+          "Verify that no new calls or messages are generated for the campaign.",
+          "Resume the campaign later to ensure it starts successfully."
+        ],
+        "rollback_procedure": "To resume a paused campaign, click the Play icon in the campaign's action column. This will restart the campaign's activities.",
+        "dependencies": [
+          "create_campaign"
+        ]
+      },
+      {
+        "how_to_id": "generate_inventory_report",
+        "metadata": {
+          "module": "Reporting",
+          "feature_area": "Campaign History",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 5,
+          "requires_permissions": [
+            "Report Viewer"
+          ]
+        },
+        "business_objective": "Generate a historical report for a campaign over a specified date range to assess performance, contact attempts, and list penetration.",
+        "preconditions": [
+          "User has permission to view reports.",
+          "At least one campaign exists with historical data."
+        ],
+        "navigation_path": "Home > Customer Engagement > Campaigns > Campaign History",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Navigate",
+            "ui_location": "Campaigns list",
+            "field_name": "History icon",
+            "value_type": null,
+            "validation_expected": "Campaign History page opens with filter options\u3010660813360014830\u2020screenshot\u3011.",
+            "common_errors": "History page not accessible."
+          },
+          {
+            "step_number": 2,
+            "action": "Select",
+            "ui_location": "Filter panel",
+            "field_name": "Select Campaign",
+            "value_type": "enum",
+            "validation_expected": "The chosen campaign is displayed in the filter\u3010660813360014830\u2020screenshot\u3011.",
+            "common_errors": "No campaign selected or selection error."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Filter panel",
+            "field_name": "Start Date",
+            "value_type": "date",
+            "validation_expected": "Date picker appears and start date is selected\u3010690667303017041\u2020screenshot\u3011.",
+            "common_errors": "Invalid date selection."
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Filter panel",
+            "field_name": "End Date",
+            "value_type": "date",
+            "validation_expected": "End date selected and displayed\u3010690667303017041\u2020screenshot\u3011.",
+            "common_errors": "End date earlier than start date."
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Filter panel",
+            "field_name": "Query",
+            "value_type": null,
+            "validation_expected": "The report results table is populated with metrics such as contacts attempted, completions, and outcomes\u3010690667303017041\u2020screenshot\u3011.",
+            "common_errors": "No results returned if date range has no data."
+          },
+          {
+            "step_number": 6,
+            "action": "Click",
+            "ui_location": "Report page",
+            "field_name": "Download or Export",
+            "value_type": null,
+            "validation_expected": "Report is exported to a file (if option available).",
+            "common_errors": "Export button disabled."
+          }
+        ],
+        "system_behavior_after_completion": "The system retrieves historical data for the selected campaign and date range, displaying metrics and contact counts. Users can export the report for offline analysis.",
+        "verification_procedure": [
+          "Verify that the metrics displayed correspond to the selected date range and campaign.",
+          "Cross-check totals with other reports or metrics for consistency.",
+          "If exported, open the downloaded file to ensure data matches the on-screen report."
+        ],
+        "rollback_procedure": "Not applicable as generating reports does not alter data.",
+        "dependencies": [
+          "create_campaign"
+        ]
+      },
+      {
+        "how_to_id": "view_contact_activity_history",
+        "metadata": {
+          "module": "Inventory",
+          "feature_area": "Contact Activity",
+          "difficulty": "beginner",
+          "estimated_time_minutes": 4,
+          "requires_permissions": [
+            "Agent",
+            "Manager"
+          ]
+        },
+        "business_objective": "Review a contact's activity log to understand previous interactions, dispositions, and outcomes for better follow-up or issue resolution.",
+        "preconditions": [
+          "User has agent or manager access to contact inventory.",
+          "The contact exists with recorded activity."
+        ],
+        "navigation_path": "Home > Inventory > Contacts > Contact Inventory",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Click",
+            "ui_location": "Left navigation",
+            "field_name": "Inventory",
+            "value_type": null,
+            "validation_expected": "Inventory menu expands.",
+            "common_errors": "Navigation collapsed."
+          },
+          {
+            "step_number": 2,
+            "action": "Click",
+            "ui_location": "Inventory submenu",
+            "field_name": "Contact Inventory",
+            "value_type": null,
+            "validation_expected": "Contact inventory table loads.",
+            "common_errors": "Page fails to load."
+          },
+          {
+            "step_number": 3,
+            "action": "Search/Filter",
+            "ui_location": "Contact inventory page",
+            "field_name": "Search bar",
+            "value_type": "text",
+            "validation_expected": "Results filter down to the desired contact.",
+            "common_errors": "Contact not found."
+          },
+          {
+            "step_number": 4,
+            "action": "Click",
+            "ui_location": "Contact list",
+            "field_name": "Contact row",
+            "value_type": null,
+            "validation_expected": "Contact details page opens with tabs for Contact Information, Custom Fields, and Activity Log\u3010466070654809815\u2020screenshot\u3011.",
+            "common_errors": "Row not clickable."
+          },
+          {
+            "step_number": 5,
+            "action": "Click",
+            "ui_location": "Contact details page",
+            "field_name": "Activity Log tab",
+            "value_type": null,
+            "validation_expected": "Activity Log table displays entries with columns for Timestamp, POC, Type, Disposition, Title, and Agent\u3010859000020009283\u2020screenshot\u3011.",
+            "common_errors": "No activity recorded."
+          },
+          {
+            "step_number": 6,
+            "action": "Click",
+            "ui_location": "Activity Log table",
+            "field_name": "Expand arrow",
+            "value_type": null,
+            "validation_expected": "Additional details such as Disposition Description, Campaign, and Segment are displayed\u3010859000020009283\u2020screenshot\u3011.",
+            "common_errors": "Row does not expand if there are no details."
+          },
+          {
+            "step_number": 7,
+            "action": "Select",
+            "ui_location": "Activity Type filter",
+            "field_name": "Filter dropdown",
+            "value_type": "enum",
+            "validation_expected": "Activity log filters by selected type (e.g., Calls, SMS).",
+            "common_errors": "Incorrect filter selection."
+          }
+        ],
+        "system_behavior_after_completion": "The system displays the contact's complete activity history with details for each interaction. Users can filter by activity type to narrow down the view.",
+        "verification_procedure": [
+          "Confirm the number of entries matches the expected interactions for the contact.",
+          "Expand multiple rows to ensure details are available and accurate.",
+          "Use filters to verify that call, email, or SMS activities display correctly."
+        ],
+        "rollback_procedure": "Not applicable as viewing the history does not modify data.",
+        "dependencies": []
+      },
+      {
+        "how_to_id": "review_suppression_reason",
+        "metadata": {
+          "module": "Inventory",
+          "feature_area": "Contact Suppression",
+          "difficulty": "intermediate",
+          "estimated_time_minutes": 4,
+          "requires_permissions": [
+            "Agent",
+            "Manager"
+          ]
+        },
+        "business_objective": "Identify why a particular contact has been suppressed from dialing or messaging, enabling corrective actions or confirmation of compliance.",
+        "preconditions": [
+          "User must have access to contact inventory and activity logs.",
+          "The contact has been suppressed via a suppression profile or list."
+        ],
+        "navigation_path": "Home > Inventory > Contacts > Contact Inventory",
+        "steps": [
+          {
+            "step_number": 1,
+            "action": "Navigate",
+            "ui_location": "Contact inventory",
+            "field_name": "Contact row",
+            "value_type": null,
+            "validation_expected": "Contact details page opens.",
+            "common_errors": "Contact not found."
+          },
+          {
+            "step_number": 2,
+            "action": "Review",
+            "ui_location": "Contact details page",
+            "field_name": "Suppressed indicator",
+            "value_type": null,
+            "validation_expected": "A label or badge indicates that the contact is suppressed.",
+            "common_errors": "No suppression indicator if contact is not suppressed."
+          },
+          {
+            "step_number": 3,
+            "action": "Click",
+            "ui_location": "Contact details page",
+            "field_name": "Activity Log tab",
+            "value_type": null,
+            "validation_expected": "Activity log entries display.",
+            "common_errors": "Activity log empty."
+          },
+          {
+            "step_number": 4,
+            "action": "Expand",
+            "ui_location": "Activity log entry",
+            "field_name": "Suppression event row",
+            "value_type": null,
+            "validation_expected": "Expanded details show a suppression reason such as matching a suppression list or profile rule.",
+            "common_errors": "Reason not displayed."
+          },
+          {
+            "step_number": 5,
+            "action": "Navigate",
+            "ui_location": "Suppression rule management",
+            "field_name": "Suppression list or profile",
+            "value_type": null,
+            "validation_expected": "User is able to locate the originating suppression list or profile for further review.",
+            "common_errors": "Cannot identify the source rule."
+          }
+        ],
+        "system_behavior_after_completion": "The user gains visibility into the rule or list that caused the suppression. No data is changed; the contact remains suppressed unless the rule is adjusted.",
+        "verification_procedure": [
+          "Confirm that the suppression reason displayed corresponds to a known suppression profile or list.",
+          "Check the suppression list or profile configuration to verify the rule matches the contact's data.",
+          "Ensure the contact remains suppressed until the rule is modified."
+        ],
+        "rollback_procedure": "To remove suppression, update the relevant suppression list or profile to exclude the contact or adjust the rule, then re-query the contact to confirm the suppression flag is removed.",
+        "dependencies": [
+          "create_suppression_profile"
+        ]
+      }
+    ];
 
     const STORAGE_KEY = "velocity_training_site_v2";
 
@@ -745,7 +3422,7 @@
       if(!l){
         $("#lessonTitle").textContent = "No lessons";
         $("#lessonDesc").textContent = "Training content could not be initialized.";
-        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the embedded JSON.</p></div>`;
+        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the training library. The embedded training data may be missing or corrupt.</p></div>`;
         $("#prevBtn").disabled = true;
         $("#nextBtn").disabled = true;
         updateProgress();
@@ -1038,10 +3715,5 @@
   })();
   </script>
 
-  <script>
-    // Embedded JSON library
-    // NOTE: This is replaced server-side when generating the file.
-    // Kept as a separate script tag so it stays readable.
-  </script>
 </body>
 </html>
