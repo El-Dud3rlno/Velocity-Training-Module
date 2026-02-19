@@ -20,6 +20,10 @@
       --bad:#fb7185;
       --chip:rgba(0,163,196,.12);
       --focus:0 0 0 3px rgba(0,163,196,.22);
+      --tour-bg:#dff4ff;
+      --tour-text:#082f49;
+      --tour-muted:#0f4c72;
+      --tour-border:rgba(0,126,168,.45);
       --radius:16px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
@@ -40,6 +44,10 @@
       --bad:#e11d48;
       --chip:rgba(0,126,168,.10);
       --focus:0 0 0 3px rgba(0,126,168,.18);
+      --tour-bg:#ecf8ff;
+      --tour-text:#082f49;
+      --tour-muted:#1d4f72;
+      --tour-border:rgba(0,126,168,.35);
     }
 
     *{box-sizing:border-box}
@@ -227,10 +235,12 @@
     /* First run tutorial */
     .tourBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:80;display:none}
     .tourBackdrop.show{display:block}
-    .tourBox{position:fixed;z-index:81;max-width:380px;background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:12px 12px;display:none}
+    .tourBox{position:fixed;z-index:81;max-width:380px;background:var(--tour-bg);color:var(--tour-text);border:1px solid var(--tour-border);border-radius:16px;box-shadow:0 16px 32px rgba(8,47,73,.35);padding:12px 12px;display:none}
     .tourBox.show{display:block}
     .tourBox .h{font-weight:950;margin:0 0 6px}
-    .tourBox .b{margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.35}
+    .tourBox .b{margin:0 0 10px;color:var(--tour-muted);font-size:13px;line-height:1.35}
+    .tourBox .btn{background:rgba(255,255,255,.52);border-color:rgba(8,47,73,.18);color:var(--tour-text)}
+    .tourBox .btn:hover{background:rgba(255,255,255,.72)}
     .tourHighlight{position:fixed;z-index:82;border-radius:14px;box-shadow:0 0 0 3px rgba(0,163,196,.35), 0 0 0 9999px rgba(0,0,0,.55);display:none}
     .tourHighlight.show{display:block}
   </style>
