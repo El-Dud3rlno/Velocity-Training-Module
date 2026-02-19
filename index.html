@@ -318,11 +318,10 @@
     /*
       Velocity Training Wizard
       - End users learn only
-      - Content compiled from embedded JSON how-to library
-      - No external loading, no user import
+      - Content loaded from the JSON how-to library file
     */
 
-    const HOWTOS = "+full+";
+    const HOWTOS_URL = "VelocityLLM Training Guide.json";
 
     const STORAGE_KEY = "velocity_training_site_v2";
 
@@ -398,7 +397,19 @@
         }));
     }
 
-    const howtos = normalizeHowtos(HOWTOS);
+    async function loadHowtos(){
+      try{
+        const resp = await fetch(encodeURI(HOWTOS_URL), { cache: "no-store" });
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        return normalizeHowtos(data);
+      }catch(err){
+        console.warn("Failed to load training JSON.", err);
+        return [];
+      }
+    }
+
+    let howtos = [];
 
     function buildModules(){
       const byModule = new Map();
@@ -466,7 +477,7 @@
       return modules;
     }
 
-    const modules = buildModules();
+    let modules = [];
 
     function flattenLessons(){
       const out=[];
@@ -478,7 +489,7 @@
       return out;
     }
 
-    let lessons = flattenLessons();
+    let lessons = [];
 
     function getLessonIndexById(id){
       return lessons.findIndex(l=>l.id===id);
@@ -745,7 +756,7 @@
       if(!l){
         $("#lessonTitle").textContent = "No lessons";
         $("#lessonDesc").textContent = "Training content could not be initialized.";
-        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the embedded JSON.</p></div>`;
+        $("#content").innerHTML = `<div class="card"><h2>No lessons available</h2><p class="muted">No how-to content found in the JSON file.</p></div>`;
         $("#prevBtn").disabled = true;
         $("#nextBtn").disabled = true;
         updateProgress();
@@ -1003,11 +1014,13 @@
       placeTour(s.target);
     }
 
-    function init(){
+    async function init(){
       loadState();
       setTheme(state.theme || "dark");
 
       // Ensure lesson list exists
+      howtos = await loadHowtos();
+      modules = buildModules();
       lessons = flattenLessons();
 
       // Set safe active lesson
