@@ -6,20 +6,20 @@
   <title>Velocity User Manual | Customer Dynamics</title>
   <style>
     :root{
-      --bg:#0b1f3b;
-      --panel:#112b52;
-      --panel2:#0e2446;
-      --text:#e6eefb;
-      --muted:#aec2e1;
-      --border:rgba(139,174,230,.24);
-      --shadow:0 16px 30px rgba(2,13,29,.40);
-      --accent:#1f66c2;
-      --accent2:#3c8ff0;
+      --bg:#081a36;
+      --panel:#0d2750;
+      --panel2:#0a2146;
+      --text:#eef4ff;
+      --muted:#bed0ec;
+      --border:rgba(125,170,238,.30);
+      --shadow:0 18px 34px rgba(1,11,28,.48);
+      --accent:#2d7be0;
+      --accent2:#58abff;
       --good:#2bb673;
       --warn:#f0a03a;
       --bad:#f16674;
-      --chip:rgba(60,143,240,.17);
-      --focus:0 0 0 3px rgba(60,143,240,.30);
+      --chip:rgba(88,171,255,.24);
+      --focus:0 0 0 3px rgba(88,171,255,.34);
       --tour-bg:#dceeff;
       --tour-text:#0d2f57;
       --tour-muted:#24507f;
@@ -30,20 +30,20 @@
     }
 
     [data-theme="light"]{
-      --bg:#eef3fb;
+      --bg:#e8f0fc;
       --panel:#ffffff;
-      --panel2:#f5f8fe;
-      --text:#13294b;
-      --muted:#4e668a;
-      --border:rgba(19,41,75,.12);
-      --shadow:0 12px 26px rgba(30,62,108,.12);
-      --accent:#1f66c2;
-      --accent2:#2f7fe0;
+      --panel2:#f1f6ff;
+      --text:#102a4f;
+      --muted:#3f5d86;
+      --border:rgba(16,42,79,.16);
+      --shadow:0 14px 28px rgba(18,46,86,.14);
+      --accent:#1c6fd7;
+      --accent2:#2e8df5;
       --good:#1f9e63;
       --warn:#cc7b13;
       --bad:#d83a52;
-      --chip:rgba(31,102,194,.10);
-      --focus:0 0 0 3px rgba(31,102,194,.20);
+      --chip:rgba(46,141,245,.14);
+      --focus:0 0 0 3px rgba(46,141,245,.26);
       --tour-bg:#e9f3ff;
       --tour-text:#0f3a68;
       --tour-muted:#2e5c8a;
@@ -57,8 +57,8 @@
       font-family:var(--sans);
       color:var(--text);
       background:
-        radial-gradient(1100px 620px at 15% -10%, rgba(60,143,240,.20), transparent 60%),
-        radial-gradient(980px 560px at 92% -8%, rgba(31,102,194,.16), transparent 58%),
+        radial-gradient(1120px 640px at 16% -12%, rgba(88,171,255,.30), transparent 60%),
+        radial-gradient(980px 560px at 95% -6%, rgba(42,120,228,.24), transparent 58%),
         var(--bg);
     }
 
@@ -67,7 +67,7 @@
       display:flex;
       align-items:center;
       padding:0 22px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), transparent 90%), var(--panel);
+      background:linear-gradient(180deg, rgba(114,170,255,.14), transparent 92%), var(--panel);
       border-bottom:1px solid var(--border);
       box-shadow:0 8px 18px rgba(8,22,45,.25);
     }
@@ -94,7 +94,7 @@
     }
 
     .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%), var(--panel);
+      background:linear-gradient(180deg, rgba(104,163,252,.10), transparent 38%), var(--panel);
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
@@ -108,7 +108,7 @@
       display:flex;align-items:center;justify-content:space-between;gap:10px;
       padding:14px 14px;
       border-bottom:1px solid var(--border);
-      background:linear-gradient(135deg, rgba(31,102,194,.18), rgba(60,143,240,.14));
+      background:linear-gradient(135deg, rgba(45,123,224,.33), rgba(88,171,255,.24));
     }
 
     .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -127,7 +127,7 @@
       font-size:13px;
       user-select:none;
     }
-    .pill:hover{background:rgba(255,255,255,.06)}
+    .pill:hover{background:rgba(255,255,255,.10)}
     .pill:focus{outline:none;box-shadow:var(--focus)}
 
     .meta{
@@ -189,8 +189,8 @@
       user-select:none;
       transition:background .12s ease, border-color .12s ease;
     }
-    .navItem:hover{background:rgba(255,255,255,.05)}
-    .navItem.active{border-color:rgba(0,163,196,.40);background:rgba(0,163,196,.10)}
+    .navItem:hover{background:rgba(88,171,255,.14)}
+    .navItem.active{border-color:rgba(45,123,224,.65);background:rgba(45,123,224,.24)}
 
     .dot{width:10px;height:10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03)}
     .dot.done{background:var(--good);border-color:transparent}
@@ -214,7 +214,7 @@
 
     .mainBody{overflow:auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 70%), var(--panel)}
 
-    .card{border:1px solid var(--border);border-radius:var(--radius);padding:14px 14px;background:rgba(255,255,255,.02);margin-bottom:12px}
+    .card{border:1px solid var(--border);border-radius:var(--radius);padding:14px 14px;background:rgba(255,255,255,.04);margin-bottom:12px}
     .card h2{margin:0 0 10px;font-size:16px}
     .card h3{margin:14px 0 8px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
     .card p,.card li{font-size:14px;line-height:1.45}
@@ -222,7 +222,7 @@
 
     .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--border);background:var(--chip);color:var(--text);margin:0 6px 6px 0}
 
-    .callout{border:1px solid rgba(0,163,196,.40);background:rgba(0,163,196,.10);border-radius:var(--radius);padding:12px 12px;margin:10px 0}
+    .callout{border:1px solid rgba(45,123,224,.60);background:rgba(45,123,224,.20);border-radius:var(--radius);padding:12px 12px;margin:10px 0}
 
     .table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:14px;overflow:hidden}
     .table th,.table td{padding:10px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;font-size:13px}
@@ -232,7 +232,7 @@
     .mono{font-family:var(--mono)}
 
     .checklist{display:grid;gap:10px}
-    .checkRow{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02)}
+    .checkRow{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.04)}
     .checkRow input{transform:translateY(2px)}
     .checkRow b{display:block;margin-bottom:2px}
 
@@ -275,8 +275,7 @@
     <aside class="panel sidebar" aria-label="User manual navigation">
       <div class="topbar">
         <div class="brand">
-          <div class="t">Velocity User Manual Workspace</div>
-          <div class="s">Structured lessons for platform operations</div>
+          <div class="s">Lessons</div>
         </div>
         <button class="pill" id="themeBtn" type="button" aria-label="Toggle theme">
           <span id="themeIcon">◐</span>
