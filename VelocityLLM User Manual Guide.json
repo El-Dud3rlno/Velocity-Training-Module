@@ -2777,5 +2777,132 @@
     "dependencies": [
       "create_custom_field"
     ]
+  },
+  {
+    "how_to_id": "schedule_campaign_report",
+    "metadata": {
+      "module": "Campaigns",
+      "feature_area": "Campaign Reports",
+      "difficulty": "beginner",
+      "estimated_time_minutes": 5,
+      "requires_permissions": [
+        "Admin"
+      ]
+    },
+    "business_objective": "Set up automated, recurring delivery of campaign performance reports to designated recipients to monitor call activity and suppression metrics.",
+    "preconditions": [
+      "You must have an existing campaign in the Campaigns list",
+      "You must have permission to manage campaigns and schedule reports",
+      "At least one recipient email address is available"
+    ],
+    "navigation_path": "Home > Customer Engagement > Campaigns",
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "Click",
+        "ui_location": "Campaigns page in left navigation",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "Campaigns list opens",
+        "common_errors": null
+      },
+      {
+        "step_number": 2,
+        "action": "Scroll and Click",
+        "ui_location": "Rightmost chain link icon in the desired campaign row",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "Scheduling modal opens with tabs for Campaign Actions, Segment Ratios, Reports",
+        "common_errors": "Failure to scroll horizontally may hide the scheduling icon"
+      },
+      {
+        "step_number": 3,
+        "action": "Click",
+        "ui_location": "Reports tab in scheduling modal",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "New Report Event section is displayed",
+        "common_errors": null
+      },
+      {
+        "step_number": 4,
+        "action": "Select",
+        "ui_location": "Day-of-week buttons (SU, MO, TU, WE, TH, FR, SA)",
+        "field_name": "Days",
+        "value_type": "enum",
+        "validation_expected": "Selected day buttons are highlighted",
+        "common_errors": "No days selected prevents scheduling"
+      },
+      {
+        "step_number": 5,
+        "action": "Select",
+        "ui_location": "Time picker field",
+        "field_name": "Time",
+        "value_type": "time",
+        "validation_expected": "Chosen time (e.g., 10:00 AM) appears in the time field",
+        "common_errors": null
+      },
+      {
+        "step_number": 6,
+        "action": "Click and Select",
+        "ui_location": "Channel dropdown",
+        "field_name": "Channel",
+        "value_type": "enum",
+        "validation_expected": "Channel field displays selected option (e.g., Dial)",
+        "common_errors": null
+      },
+      {
+        "step_number": 7,
+        "action": "Click and Select",
+        "ui_location": "Report dropdown",
+        "field_name": "Report",
+        "value_type": "enum",
+        "validation_expected": "Report field displays chosen report type",
+        "common_errors": null
+      },
+      {
+        "step_number": 8,
+        "action": "Enter",
+        "ui_location": "Email input field",
+        "field_name": "Email",
+        "value_type": "text",
+        "validation_expected": "Email addresses appear in the field",
+        "common_errors": "Invalid email format prevents adding report"
+      },
+      {
+        "step_number": 9,
+        "action": "Click",
+        "ui_location": "Add Report button",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "A new row appears in the Scheduled Reports table with the specified schedule",
+        "common_errors": "Leaving any required field blank or invalid may disable the Add Report button"
+      },
+      {
+        "step_number": 10,
+        "action": "(Optional) Click",
+        "ui_location": "Trash icon next to a scheduled report row",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "Scheduled report row is removed",
+        "common_errors": null
+      },
+      {
+        "step_number": 11,
+        "action": "Click",
+        "ui_location": "Close button in the scheduling modal",
+        "field_name": null,
+        "value_type": null,
+        "validation_expected": "Scheduling modal closes and returns to the Campaigns list",
+        "common_errors": null
+      }
+    ],
+    "system_behavior_after_completion": "Velocity will email the selected report(s) to the specified recipients on the chosen days and times. Scheduled events are listed in the Scheduled Reports table.",
+    "verification_procedure": [
+      "Reopen the scheduling modal via the chain link icon and confirm that the scheduled report appears in the Scheduled Reports table with the correct days, time, channel, and report type.",
+      "Check recipient email inbox after the scheduled time to ensure the report was delivered."
+    ],
+    "rollback_procedure": "Open the scheduling modal, navigate to the Reports tab, and click the trash icon next to the scheduled report to delete it.",
+    "dependencies": []
   }
 ]
